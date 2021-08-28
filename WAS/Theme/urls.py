@@ -28,6 +28,7 @@ else:
     switch = Ver2
 
 urlpatterns = [
+    
     #------------------------------ | ************ Theme ************ | ------------------------------#
     # Theme Ver 1
     path('ver1/dashboard/index=<num>',      Ver1.dashboard,                 name='Ver1_dashboard'),
