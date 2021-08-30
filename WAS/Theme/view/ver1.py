@@ -58,5 +58,50 @@ class Ver1:
         context = {
             'page': page
         }
-        if bootstrap == "flot":
+        if bootstrap == "accordion":
+            return render(request, './ver1/4_Bootstrap/01_ui-accordion.html', context)
+        elif bootstrap == "alert":
+            return render(request, './ver1/4_Bootstrap/02_ui-alert.html', context)
+        elif bootstrap == "badge":
+            return render(request, './ver1/4_Bootstrap/03_ui-badge.html', context)
+        elif bootstrap == "button":
+            return render(request, './ver1/4_Bootstrap/04_ui-button.html', context)
+        elif bootstrap == "modal":
+            return render(request, './ver1/4_Bootstrap/05_ui-modal.html', context)
+        elif bootstrap == "button-group":
+            return render(request, './ver1/4_Bootstrap/06_ui-button-group.html', context)
+        elif bootstrap == "list-group":
+            return render(request, './ver1/4_Bootstrap/07_ui-list-group.html', context)
+        elif bootstrap == "media-object":
+            return render(request, './ver1/4_Bootstrap/08_ui-media-object.html', context)
+        elif bootstrap == "card":
+            return render(request, './ver1/4_Bootstrap/09_ui-card.html', context)
+        elif bootstrap == "carousel":
+            return render(request, './ver1/4_Bootstrap/10_ui-carousel.html', context)
+        elif bootstrap == "dropdown":
+            return render(request, './ver1/4_Bootstrap/11_ui-dropdown.html', context)
+        elif bootstrap == "popover":
+            return render(request, './ver1/4_Bootstrap/12_ui-popover.html', context)
+        elif bootstrap == "progressbar":
+            return render(request, './ver1/4_Bootstrap/13_ui-progressbar.html', context)
+        elif bootstrap == "tab":
+            return render(request, './ver1/4_Bootstrap/14_ui-tab.html', context)
+        elif bootstrap == "typography":
+            return render(request, './ver1/4_Bootstrap/15_ui-typography.html', context)
+        elif bootstrap == "pagination":
+            return render(request, './ver1/4_Bootstrap/16_ui-pagination.html', context)
+        elif bootstrap == "grid":
+            return render(request, './ver1/4_Bootstrap/17_ui-grid.html', context)
+        elif bootstrap == "label":
+            return render(request, './ver1/4_Bootstrap/18_ui-label.html', context)
+        elif bootstrap == "tooltip":
+            return render(request, './ver1/4_Bootstrap/19_ui-tooltip.html', context)
+        
+    def plugins(request, plugin):
+        print("plugins", plugin)
+        page = 'plugins'
+        context = {
+            'page': page
+        }
+        if plugin == "accordion":
             return render(request, './ver1/3_Charts/1_chart-flot.html', context)

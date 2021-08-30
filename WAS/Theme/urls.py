@@ -35,6 +35,7 @@ urlpatterns = [
     path('ver1/apps/<app>/<email>',         Ver1.apps,                      name='Ver1_dashboard'),
     path('ver1/charts/<chart>',             Ver1.chart,                     name='Ver1_dashboard'),
     path('ver1/bootstrap/<bootstrap>',      Ver1.bootstrap,                 name='Ver1_dashboard'),
+    path('ver1/plugins/<plugin>',          Ver1.plugins,                 name='Ver1_dashboard'),
 
     # Theme Ver 2
     path('ver2/dashboard/',                 Ver2.dashboard,                 name='Ver2_dashboard'),
