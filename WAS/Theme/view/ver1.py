@@ -103,5 +103,23 @@ class Ver1:
         context = {
             'page': page
         }
-        if plugin == "accordion":
-            return render(request, './ver1/3_Charts/1_chart-flot.html', context)
+        if plugin == "select2":
+            return render(request, './ver1/5_Plugins/1_uc-select2.html', context)
+        elif plugin == "nestable":
+            return render(request, './ver1/5_Plugins/2_uc-nestable.html', context)
+        elif plugin == "noui-slider1":
+            return render(request, './ver1/5_Plugins/3_uc-noui-slider.html', context)
+        elif plugin == "sweetalert":
+            return render(request, './ver1/5_Plugins/4_uc-sweetalert.html', context)
+        elif plugin == "toastr":
+            return render(request, './ver1/5_Plugins/5_uc-toastr.html', context)
+        elif plugin == "map-jqvmap":
+            return render(request, './ver1/5_Plugins/6_map-jqvmap.html', context)
+
+    def widget(request):
+        print("widget")
+        page = 'widget-basic'
+        context = {
+            'page': page
+        }
+        return render(request, './ver1/widget-basic.html', context)
