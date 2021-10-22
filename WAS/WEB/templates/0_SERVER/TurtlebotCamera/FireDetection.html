@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "include/head.html" %}
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        {% include "include/header.html" %}
+        {% include "include/sidebar.html" %}
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+
+                {% include "0_SERVER/3_turtlebot/1_title.html" %}
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8" id="">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Fire Detection</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <img src="http://{{ip}}:8000/web/DeepLearning/FireDetection/"  style="width:100%; height:100%" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-4" id="">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">MobileNet SSD</h4>
+                            </div>
+                            <div class="card-body">
+                                <h5>- 빠르고 효율적인 딥러닝 기반 Object Detection을 위해 MobileNet과 SSD를 결합한 MobileNet SSD를 사용</h5>
+
+                                <h5>- 이미지를 분류하기 위한 CNN(Convolution Neural Network)의 MobileNet은 같은 레이어 수의 다른 CNN 구조에 비해 낮은 파라미터 수로 인하여 작은 응답 지연 시간을 가짐</h5>
+
+                                <h5>- 객체 인식을 위한 딥러닝 모델 중 하나인 SSD(Single Shot Multibox Detector)는 입력한 하나의 이미지만 CNN을 실행하여 객체를 탐지</h5>
+                                
+                            </div>
+                            <div class="card-body">
+                                <p>* caffemodel 파일 : <p>
+                                <p>Object Detection을 위해 사전 훈련된 모델인 MobileNet SSD caffemodel을 사용(약 20개의 객체 인식)<p>
+
+                                <p>* prototxt 파일 : </p>
+                                <p>모델의 레이어 구성 및 속성 정의</p>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+
+        {% include "include/footer.html" %}
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    {% comment %} {% include "include/script.html" %} {% endcomment %}
+<script src="{% static 'ver1/vendor/global/global.min.js' %}"></script>
+<script src="{% static 'ver1/js/quixnav-init.js' %}"></script>
+<script src="{% static 'ver1/vendor/quixnav/quixnav.min.js' %}"></script>
+<script src="{% static 'ver1/js/custom.min.js' %}"></script>
+</body>
+
+</html>

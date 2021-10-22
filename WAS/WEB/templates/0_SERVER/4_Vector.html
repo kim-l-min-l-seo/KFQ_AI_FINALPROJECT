@@ -1,0 +1,269 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "include/head.html" %}
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        {% include "include/header.html" %}
+
+        {% include "include/sidebar.html" %}
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+
+                <h1>Remote Control Vector</h1>
+            <table>
+                <tr>
+                    <td valign = top>
+                        <div id="vectorImageMicrosoftWarning" style="display: none;color: #ff9900; text-align: center;">Video feed performance is better in Chrome or Firefox due to mjpeg limitations in this browser</div>
+                        <img src="http://121.128.137.4:5000/vectorImage" id="vectorImageId" width=640 height=480>
+                        <div id="DebugInfoId"></div>
+                    </td>
+                    <td width=30></td>
+                    <td valign=top>
+                        <h2>Controls:</h2>
+
+                        <h3>Driving:</h3>
+
+                        <b>W A S D</b> : Drive Forwards / Left / Back / Right<br><br>
+                        <b>Q</b> : Toggle Mouse Look: <button id="mouseLookId" onClick=onMouseLookButtonClicked(this) style="font-size: 14px">Default</button><br>
+                        <b>Mouse</b> : Move in browser window to aim<br>
+                        (steer and head angle)<br>
+                        (similar to an FPS game)<br>
+
+                        <h3>Head:</h3>
+                        <b>T</b> : Move Head Up<br>
+                        <b>G</b> : Move Head Down<br>
+
+                        <h3>Lift:</h3>
+                        <b>R</b> : Move Lift Up<br>
+                        <b>F</b>: Move Lift Down<br>
+                        <h3>General:</h3>
+                        <b>Shift</b> : Hold to Move Faster (Driving, Head and Lift)<br>
+                        <b>Alt</b> : Hold to Move Slower (Driving, Head and Lift)<br>
+                        <b>P</b> : Toggle Free Play mode: <button id="freeplayId" onClick=onFreeplayButtonClicked(this) style="font-size: 14px">Default</button><br>
+                        <b>O</b> : Toggle Debug Annotations: <button id="debugAnnotationsId" onClick=onDebugAnnotationsButtonClicked(this) style="font-size: 14px">Default</button><br>
+                        <h3>Play Animations</h3>
+                        <b>0 .. 9</b> : Play Animation mapped to that key<br>
+                        <h3>Talk</h3>
+                        <b>Space</b> : Say <input type="text" name="sayText" id="sayTextId" value=\"""" + flask_app.remote_control_vector.text_to_say + """\" onchange=handleTextInput(this)>
+                    </td>
+                    <td width=30></td>
+                    <td valign=top>
+                    <h2>Animation key mappings:</h2>
+                    get_anim_sel_drop_downs()<br>
+                    <h2>Animation Triggers:</h2>
+                    get_anim_trigger_sel_drop_down()<br><br>
+                    </td>
+                </tr>
+            </table>
+
+            </div>
+        </div>
+
+        {% include "include/footer.html" %}
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+<script type="text/javascript">
+    var gLastClientX = -1
+    var gLastClientY = -1
+    var gIsMouseLookEnabled =to_js_bool_string(_is_mouse_look_enabled_by_default)
+    var gAreDebugAnnotationsEnabled = str(flask_app.display_debug_annotations)
+    var gIsFreeplayEnabled = false
+    var gUserAgent = window.navigator.userAgent;
+    var gIsMicrosoftBrowser = gUserAgent.indexOf('MSIE ') > 0 || gUserAgent.indexOf('Trident/') > 0 || gUserAgent.indexOf('Edge/') > 0;
+    var gSkipFrame = fals
+    if (gIsMicrosoftBrowser) {
+        document.getElementById("vectorImageMicrosoftWarning").style.display = "block";
+
+    function postHttpRequest(url, dataSet)
+    {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.send( JSON.stringify( dataSet ) );
+        console.log("xhr : ",xhr)
+        console.log("url : ",url)
+        console.log("dataSet : ",dataSet)
+
+
+    function updateVector()
+    {
+        console.log("Updating log")
+        if (gIsMicrosoftBrowser && !gSkipFrame) {
+            // IE doesn't support MJPEG, so we need to ping the server for more images.
+            // Though, if this happens too frequently, the controls will be unresponsive.
+            gSkipFrame = true;
+            document.getElementById("vectorImageId").src="vectorImage?" + (new Date()).getTime();
+        } else if (gSkipFrame) {
+            gSkipFrame = false;
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                document.getElementById("DebugInfoId").innerHTML = xhr.responseText
+            }
+    
+        xhr.open("POST", "updateVector", true);
+        xhr.send( null );
+    }
+    setInterval(updateVector , 60
+    function updateButtonEnabledText(button, isEnabled)
+    {
+        button.firstChild.data = isEnabled ? "Enabled" : "Disabled";
+
+    function onMouseLookButtonClicked(button)
+    {
+        gIsMouseLookEnabled = !gIsMouseLookEnabled;
+        updateButtonEnabledText(button, gIsMouseLookEnabled);
+        isMouseLookEnabled = gIsMouseLookEnabled
+        postHttpRequest("setMouseLookEnabled", {isMouseLookEnabled})
+
+    function updateDebugAnnotationButtonEnabledText(button, isEnabled)
+    {
+        switch(gAreDebugAnnotationsEnabled)
+        {
+        case 0:
+            button.firstChild.data = "Disabled";
+            break;
+        case 1:
+            button.firstChild.data = "Enabled (vision)";
+            break;
+        case 2:
+            button.firstChild.data = "Enabled (all)";
+            break;
+        default:
+            button.firstChild.data = "ERROR";
+            break;
+        }
+
+    function onDebugAnnotationsButtonClicked(button)
+    {
+        gAreDebugAnnotationsEnabled += 1;
+        if (gAreDebugAnnotationsEnabled > 2)
+        {
+            gAreDebugAnnotationsEnabled = 0
+        }
+        updateDebugAnnotationButtonEnabledText(button, gAreDebugAnnotationsEnabled)
+        areDebugAnnotationsEnabled = gAreDebugAnnotationsEnabled
+        postHttpRequest("setAreDebugAnnotationsEnabled", {areDebugAnnotationsEnabled})
+
+    function onFreeplayButtonClicked(button)
+    {
+        gIsFreeplayEnabled = !gIsFreeplayEnabled;
+        updateButtonEnabledText(button, gIsFreeplayEnabled);
+        isFreeplayEnabled = gIsFreeplayEnabled
+        postHttpRequest("setFreeplayEnabled", {isFreeplayEnabled})
+
+    updateButtonEnabledText(document.getElementById("mouseLookId"), gIsMouseLookEnabled);
+    updateButtonEnabledText(document.getElementById("freeplayId"), gIsFreeplayEnabled);
+    updateDebugAnnotationButtonEnabledText(document.getElementById("debugAnnotationsId"), gAreDebugAnnotationsEnabled
+    function handleDropDownSelect(selectObject)
+    {
+        selectedIndex = selectObject.selectedIndex
+        itemName = selectObject.name
+        postHttpRequest("dropDownSelect", {selectedIndex, itemName});
+
+    function handleAnimTriggerDropDownSelect(selectObject)
+    {
+        animTriggerName = selectObject.value
+        postHttpRequest("animTriggerDropDownSelect", {animTriggerName});
+
+    function handleKeyActivity (e, actionType)
+    {
+        var keyCode  = (e.keyCode ? e.keyCode : e.which);
+        var hasShift = (e.shiftKey ? 1 : 0)
+        var hasCtrl  = (e.ctrlKey  ? 1 : 0)
+        var hasAlt   = (e.altKey   ? 1 : 
+        if (actionType=="keyup")
+        {
+            if (keyCode == 79) // 'O'
+            {
+                // Simulate a click of the debug annotations button
+                onDebugAnnotationsButtonClicked(document.getElementById("debugAnnotationsId"))
+            }
+            else if (keyCode == 80) // 'P'
+            {
+                // Simulate a click of the freeplay button
+                onFreeplayButtonClicked(document.getElementById("freeplayId"))
+            }
+            else if (keyCode == 81) // 'Q'
+            {
+                // Simulate a click of the mouse look button
+                onMouseLookButtonClicked(document.getElementById("mouseLookId"))
+            }
+    
+        postHttpRequest(actionType, {keyCode, hasShift, hasCtrl, hasAlt})
+
+    function handleMouseActivity (e, actionType)
+    {
+        var clientX = e.clientX / document.body.clientWidth  // 0..1 (left..right)
+        var clientY = e.clientY / document.body.clientHeight // 0..1 (top..bottom)
+        var isButtonDown = e.which && (e.which != 0) ? 1 : 0
+        var deltaX = (gLastClientX >= 0) ? (clientX - gLastClientX) : 0.0
+        var deltaY = (gLastClientY >= 0) ? (clientY - gLastClientY) : 0.0
+        gLastClientX = clientX
+        gLastClientY = clien
+        postHttpRequest(actionType, {clientX, clientY, isButtonDown, deltaX, deltaY})
+
+    function handleTextInput(textField)
+    {
+        textEntered = textField.value
+        postHttpRequest("sayText", {textEntered})
+
+    document.addEventListener("keydown", function(e) { handleKeyActivity(e, "keydown") } );
+    document.addEventListener("keyup",   function(e) { handleKeyActivity(e, "keyup") } 
+    document.addEventListener("mousemove",   function(e) { handleMouseActivity(e, "mousemove") } 
+    function stopEventPropagation(event)
+    {
+        if (event.stopPropagation)
+        {
+            event.stopPropagation();
+        }
+        else
+        {
+            event.cancelBubble = true
+        }
+
+    document.getElementById("sayTextId").addEventListener("keydown", function(event) {
+        stopEventPropagation(event);
+    } );
+    document.getElementById("sayTextId").addEventListener("keyup", function(event) {
+        stopEventPropagation(event);
+    } );
+</script>
+<script src="{% static 'ver1/vendor/global/global.min.js' %}"></script>
+<script src="{% static 'ver1/js/quixnav-init.js' %}"></script>
+<script src="{% static 'ver1/vendor/quixnav/quixnav.min.js' %}"></script>
+<script src="{% static 'ver1/js/custom.min.js' %}"></script>
+</body>
+
+</html>

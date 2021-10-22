@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+{% include "include/head.html" %}
+
+<body class="h-100">
+    {% include "include/header.html" %}
+    {% include "include/sidebar.html" %}
+
+    <div class="authincation h-100">
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-5">
+                    <div class="form-input-content text-center">
+                        <div class="mb-5">
+                            <a class="btn btn-primary" href="./index.html">Back to Home</a>
+                        </div>
+                        <h1 class="error-text font-weight-bold">400</h1>
+                        <h4 class="mt-4"><i class="fa fa-thumbs-down text-danger"></i> Bad Request</h4>
+                        <p>Your Request resulted in an error</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% include "include/footer.html" %}
+    {% include "include/script.html" %}
+</body>
+
+</html>

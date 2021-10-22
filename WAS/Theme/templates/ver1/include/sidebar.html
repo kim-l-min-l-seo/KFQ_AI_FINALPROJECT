@@ -1,0 +1,129 @@
+{% load static %}
+
+<!--**********************************
+    Sidebar start
+***********************************-->
+<div class="quixnav">
+    <div class="quixnav-scroll">
+        <ul class="metismenu" id="menu">
+            <li class="nav-label first">Main Menu</li>
+            <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
+            </li> -->
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/theme/ver1/dashboard/index=1">Dashboard 1</a></li>
+                    <li><a href="/theme/ver1/dashboard/index=2">Dashboard 2</a></li>
+                </ul>
+            </li>
+            <li class="nav-label">Apps</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-app-store"></i><span class="nav-text">Apps</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/theme/ver1/apps/profile/x">Profile</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
+                        <ul aria-expanded="false">
+                            <li><a href="/theme/ver1/apps/email/compose">Compose</a></li>
+                            <li><a href="/theme/ver1/apps/email/inbox">Inbox</a></li>
+                            <li><a href="/theme/ver1/apps/email/read">Read</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/theme/ver1/apps/calender/x">Calendar</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-chart-bar-33"></i><span class="nav-text">Charts</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/theme/ver1/charts/flot">Flot</a></li>
+                    <li><a href="/theme/ver1/charts/morris">Morris</a></li>
+                    <li><a href="/theme/ver1/charts/chartjs">Chartjs</a></li>
+                    <li><a href="/theme/ver1/charts/chartist">Chartist</a></li>
+                    <li><a href="/theme/ver1/charts/sparkline">Sparkline</a></li>
+                    <li><a href="/theme/ver1/charts/peity">Peity</a></li>
+                </ul>
+            </li>
+            <li class="nav-label">Components</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-world-2"></i><span class="nav-text">Bootstrap</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/theme/ver1/bootstrap/accordion">Accordion</a></li>
+                    <li><a href="/theme/ver1/bootstrap/alert">Alert</a></li>
+                    <li><a href="/theme/ver1/bootstrap/badge">Badge</a></li>
+                    <li><a href="/theme/ver1/bootstrap/button">Button</a></li>
+                    <li><a href="/theme/ver1/bootstrap/modal">Modal</a></li>
+                    <li><a href="/theme/ver1/bootstrap/button-group">Button Group</a></li>
+                    <li><a href="/theme/ver1/bootstrap/list-group">List Group</a></li>
+                    <li><a href="/theme/ver1/bootstrap/media-object">Media Object</a></li>
+                    <li><a href="/theme/ver1/bootstrap/card">Cards</a></li>
+                    <li><a href="/theme/ver1/bootstrap/carousel">Carousel</a></li>
+                    <li><a href="/theme/ver1/bootstrap/dropdown">Dropdown</a></li>
+                    <li><a href="/theme/ver1/bootstrap/popover">Popover</a></li>
+                    <li><a href="/theme/ver1/bootstrap/progressbar">Progressbar</a></li>
+                    <li><a href="/theme/ver1/bootstrap/tab">Tab</a></li>
+                    <li><a href="/theme/ver1/bootstrap/typography">Typography</a></li>
+                    <li><a href="/theme/ver1/bootstrap/pagination">Pagination</a></li>
+                    <li><a href="/theme/ver1/bootstrap/grid">Grid</a></li>
+                    <li><a href="/theme/ver1/bootstrap/label">Label</a></li>
+                    <li><a href="/theme/ver1/bootstrap/tooltip">Tooltip</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-plug"></i><span class="nav-text">Plugins</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/theme/ver1/plugins/select2">Select 2</a></li>
+                    <li><a href="/theme/ver1/plugins/nestable">Nestedable</a></li>
+                    <li><a href="/theme/ver1/plugins/noui-slider1">Noui Slider</a></li>
+                    <li><a href="/theme/ver1/plugins/sweetalert">Sweet Alert</a></li>
+                    <li><a href="/theme/ver1/plugins/toastr">Toastr</a></li>
+                    <li><a href="/theme/ver1/plugins/map-jqvmap">Jqv Map</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/theme/ver1/widget" aria-expanded="false">
+                    <i class="icon icon-globe-2"></i>
+                    <span class="nav-text">Widget</span>
+                </a>
+            </li>
+            <li class="nav-label">Forms</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-form"></i><span class="nav-text">Forms</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/theme/ver1/form/element">Form Elements</a></li>
+                    <li><a href="/theme/ver1/form/wizard">Wizard</a></li>
+                    <li><a href="/theme/ver1/form/editor-summernote">Summernote</a></li>
+                    <li><a href="/theme/ver1/form/pickers">Pickers</a></li>
+                    <li><a href="/theme/ver1/form/validation-jquery">Jquery Validate</a></li>
+                </ul>
+            </li>
+            <li class="nav-label">Table</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-layout-25"></i><span class="nav-text">Table</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/theme/ver1/table/bootstrap-basic">Bootstrap</a></li>
+                    <li><a href="/theme/ver1/table/datatable-basic">Datatable</a></li>
+                </ul>
+            </li>
+            <li class="nav-label">Extra</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-single-copy-06"></i><span class="nav-text">Pages</span></a>
+                <ul aria-expanded="false">
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
+                        <ul aria-expanded="false">
+                            <li><a href="/theme/ver1/page/error-400">Error 400</a></li>
+                            <li><a href="/theme/ver1/page/error-403">Error 403</a></li>
+                            <li><a href="/theme/ver1/page/error-404">Error 404</a></li>
+                            <li><a href="/theme/ver1/page/error-500">Error 500</a></li>
+                            <li><a href="/theme/ver1/page/error-503">Error 503</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/theme/ver1/page/lock-screen">Lock Screen</a></li>
+                    <li><a href="/theme/ver1/page/login">Login</a></li>
+                    <li><a href="/theme/ver1/page/register">Register</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--**********************************
+    Sidebar end
+***********************************-->

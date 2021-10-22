@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "include/head.html" %}
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        {% include "include/header.html" %}
+
+        {% include "include/sidebar.html" %}
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+
+                {% include "0_SERVER/3_turtlebot/1_title.html" %}
+                {% include "0_SERVER/3_turtlebot/2_statusValue.html" %}
+                {% include "0_SERVER/3_turtlebot/3_camera.html" %}
+
+            </div>
+        </div>
+
+        {% include "include/footer.html" %}
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    {% comment %} {% include "include/script.html" %} {% endcomment %}
+<script src="{% static 'ver1/vendor/global/global.min.js' %}"></script>
+<script src="{% static 'ver1/js/quixnav-init.js' %}"></script>
+<script src="{% static 'ver1/vendor/quixnav/quixnav.min.js' %}"></script>
+<script src="{% static 'ver1/js/custom.min.js' %}"></script>
+</body>
+
+</html>
