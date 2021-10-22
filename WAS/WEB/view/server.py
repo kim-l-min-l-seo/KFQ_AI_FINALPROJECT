@@ -2,10 +2,15 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators import gzip
 from django.http import StreamingHttpResponse
+
 import cv2
 import threading
-from .WebCamera.ssdNet import ssdNet
+import socket
+import numpy as np
+
 from .VideoCamera import VideoCamera
+
+
 
 cam = VideoCamera()
 class View:
@@ -55,7 +60,7 @@ class View:
             print("Exception Error. webCam")
             pass
 
-    def deeplearning(request, model):
+    def webCamera(request, model):
         print('model :', model)
         global cam
         try:
@@ -68,9 +73,41 @@ class View:
             print("Exception Error. ssdNet")
             pass
 
+    def deeplearning(request, model):
+        
+        HOST = '192.168.50.210'
+        PORT = 9999
+
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_socket.connect((HOST, PORT))
+
+
+        while True:
+
+            message = '1'
+            client_socket.send(message.encode())
+
+            length = recvall(client_socket, 16)
+            stringData = recvall(client_socket, int(length))
+            data = np.frombuffer(stringData, dtype='uint8')
+
+            decimg = cv2.imdecode(data, 1)
+            return decimg
+
 def gen(camera,mod):
     print('gen() -mod :',mod)
     while True:
         frame = camera.get_frame(mod)
         yield(b'--frame\r\n'
               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+
+def recvall(sock, count):
+    buf = b''
+    while count:
+        newbuf = sock.recv(count)
+        if not newbuf:
+            return None
+        buf += newbuf
+        count -= len(newbuf)
+    return buf

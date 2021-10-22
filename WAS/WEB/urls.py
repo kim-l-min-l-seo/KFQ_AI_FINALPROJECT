@@ -26,10 +26,9 @@ urlpatterns = [
     # path('ssdNet/',                   Camera.ssdNet,         name='Ver1_dashboard'),
     # path('gesture-recognition/',      Camera.gesture_recognition,         name='Ver1_dashboard'),
 
-    path('monitoring/<hw>/<dl>/',        View.server,         name='Ver1_dashboard'),
-    path('DeepLearning/<model>/',      View.deeplearning,
-         name='Ver1_dashboard'),
-
+    path('monitoring/<hw>/<dl>/',      View.server,         name='Ver1_dashboard'),
+    path('webCamera/<model>/',         View.webCamera,     name='Ver1_dashboard'),
+    path('DeepLearning/<model>/',      View.deeplearning, name='Ver1_dashboard'),
 
     path('dashboard/index=<num>',      Ver1.dashboard,                 name='Ver1_dashboard'),
     path('apps/<app>/<email>',         Ver1.apps,         name='Ver1_dashboard'),
