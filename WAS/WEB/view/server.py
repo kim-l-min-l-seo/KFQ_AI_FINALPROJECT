@@ -41,6 +41,10 @@ class View:
             return render(request, './0_SERVER/2_proxy.html', context)
         elif hw == "turtlebot" and dl == "page":
             return render(request, './0_SERVER/3_turtlebot.html', context)
+        elif hw == "template" and dl == "page":
+            return render(request, './0_SERVER/4_template.html', context)
+        elif hw == "template2" and dl == "page":
+            return render(request, './0_SERVER/5_template_2.html', context)
         elif hw == "WebCamera" and dl =="ObjectDetection":
             return render(request, './0_SERVER/WebCamera/ObjectDetection.html', context)
         elif hw == "WebCamera" and dl == "gesture-recognition":

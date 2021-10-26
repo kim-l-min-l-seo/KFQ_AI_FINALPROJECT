@@ -1,0 +1,327 @@
+{% load static %}
+
+<style>
+#container {
+    margin: 0px auto;
+    width: 500px;
+    height: 375px;
+    border: 10px #333 solid;
+}
+#videoElement {
+    width: 500px;
+    height: 375px;
+    background-color: #666;
+}
+</style>
+
+<!--
+
+<script>
+var video = document.querySelector("#videoElement");
+ 
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+</script>
+-->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Turtlebot Camera</h4>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6" id="">
+                    <div class="card-header">
+                        <h4 class="card-title">LOCAL IP : {{ip}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="http://{{ip}}:8000/web/webCame/"  style="width:100%; height:100%" />
+                    </div>
+                </div>
+                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6" id="">
+                    <div class="card-header">
+                        <h4 class="card-title">외부접속 IP : {{outip}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="http://{{outip}}:8000/web/webCame"  style="width:100%; height:100%" />
+                    </div>
+                </div>
+                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6" id="">
+                    <div class="card-header">
+                        <h4 class="card-title">Localhost</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="http://127.0.0.1:8000/web/webCame"  style="width:100%; height:100%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xl-4 col-xxl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">개발현황</h4>
+            </div>
+            <div class="card-body">
+                <div class="widget-timeline">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-badge primary"></div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>10 minutes ago</span>
+                                <h6 class="m-t-5">Youtube, a video-sharing website, goes live.</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge warning">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>20 minutes ago</span>
+                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge danger">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>30 minutes ago</span>
+                                <h6 class="m-t-5">Google acquires Youtube.</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge success">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>15 minutes ago</span>
+                                <h6 class="m-t-5">StumbleUpon is acquired by eBay. </h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge warning">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>20 minutes ago</span>
+                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge dark">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>20 minutes ago</span>
+                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge info">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>30 minutes ago</span>
+                                <h6 class="m-t-5">Google acquires Youtube.</h6>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 col-xxl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Notice Board</h4>
+            </div>
+            <div class="card-body">
+                <div class="recent-comment m-t-15">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img class="media-object mr-3" src="{% static 'ver1/images/avatar/4.png' %}" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading text-primary">john doe</h4>
+                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                            <p class="comment-date">10 min ago</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img class="media-object mr-3" src="{% static 'ver1/images/avatar/2.png' %}" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading text-success">Mr. John</h4>
+                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                            <p class="comment-date">1 hour ago</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img class="media-object mr-3" src="{% static 'ver1/images/avatar/3.png' %}" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading text-danger">Mr. John</h4>
+                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                            <div class="comment-date">Yesterday</div>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img class="media-object mr-3" src="{% static 'ver1/images/avatar/4.png' %}" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading text-primary">john doe</h4>
+                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                            <p class="comment-date">10 min ago</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img class="media-object mr-3" src="{% static 'ver1/images/avatar/2.png' %}" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading text-success">Mr. John</h4>
+                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                            <p class="comment-date">1 hour ago</p>
+                        </div>
+                    </div>
+                    <div class="media no-border">
+                        <div class="media-left">
+                            <a href="#"><img class="media-object mr-3" src="{% static 'ver1/images/avatar/3.png' %}" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading text-info">Mr. John</h4>
+                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                            <div class="comment-date">Yesterday</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-xxl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Todo</h4>
+            </div>
+            <div class="card-body px-0">
+                <div class="todo-list">
+                    <div class="tdl-holder">
+                        <div class="tdl-content widget-todo2 mr-4">
+                            <ul id="todo_list">
+                                <li><label><input type="checkbox"><i></i><span>Get up</span><a href='#'
+                                            class="ti-trash"></a></label></li>
+                                <li><label><input type="checkbox" checked><i></i><span>Stand up</span><a
+                                            href='#' class="ti-trash"></a></label></li>
+                                <li><label><input type="checkbox"><i></i><span>Don't give up the
+                                            fight.</span><a href='#' class="ti-trash"></a></label></li>
+                                <li><label><input type="checkbox" checked><i></i><span>Do something
+                                            else</span><a href='#' class="ti-trash"></a></label></li>
+                                <li><label><input type="checkbox" checked><i></i><span>Stand up</span><a
+                                            href='#' class="ti-trash"></a></label></li>
+                                <li><label><input type="checkbox"><i></i><span>Don't give up the
+                                            fight.</span><a href='#' class="ti-trash"></a></label></li>
+                            </ul>
+                        </div>
+                        <div class="px-4">
+                            <input type="text" class="tdl-new form-control" placeholder="Write new item and hit 'Enter'...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12 col-xxl-6 col-lg-6 col-md-12">
+        <div class="row">
+            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
+                <div class="card">
+                    <div class="social-graph-wrapper widget-facebook">
+                        <span class="s-icon"><i class="fa fa-facebook"></i></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 border-right">
+                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                <h4 class="m-1"><span class="counter">89</span> k</h4>
+                                <p class="m-0">Friends</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                <h4 class="m-1"><span class="counter">119</span> k</h4>
+                                <p class="m-0">Followers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
+                <div class="card">
+                    <div class="social-graph-wrapper widget-linkedin">
+                        <span class="s-icon"><i class="fa fa-linkedin"></i></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 border-right">
+                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                <h4 class="m-1"><span class="counter">89</span> k</h4>
+                                <p class="m-0">Friends</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                <h4 class="m-1"><span class="counter">119</span> k</h4>
+                                <p class="m-0">Followers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
+                <div class="card">
+                    <div class="social-graph-wrapper widget-googleplus">
+                        <span class="s-icon"><i class="fa fa-google-plus"></i></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 border-right">
+                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                <h4 class="m-1"><span class="counter">89</span> k</h4>
+                                <p class="m-0">Friends</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                <h4 class="m-1"><span class="counter">119</span> k</h4>
+                                <p class="m-0">Followers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
+                <div class="card">
+                    <div class="social-graph-wrapper widget-twitter">
+                        <span class="s-icon"><i class="fa fa-twitter"></i></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 border-right">
+                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                <h4 class="m-1"><span class="counter">89</span> k</h4>
+                                <p class="m-0">Friends</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                                <h4 class="m-1"><span class="counter">119</span> k</h4>
+                                <p class="m-0">Followers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+{% load static %}
+
+<style>
+#container {
+    margin: 0px auto;
+    width: 500px;
+    height: 375px;
+    border: 10px #333 solid;
+}
+#videoElement {
+    width: 500px;
+    height: 375px;
+    background-color: #666;
+}
+</style>
+
+<!--
+
+<script>
+var video = document.querySelector("#videoElement");
+ 
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+</script>
+-->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Turtlebot Camera</h4>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6" id="">
+                    <div class="card-header">
+                        <h4 class="card-title">LOCAL IP : {{ip}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="http://{{ip}}:8000/web/webCame/"  style="width:100%; height:100%" />
+                    </div>
+                </div>
+                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6" id="">
+                    <div class="card-header">
+                        <h4 class="card-title">외부접속 IP : {{outip}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="http://{{outip}}:8000/web/webCame"  style="width:100%; height:100%" />
+                    </div>
+                </div>
+                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6" id="">
+                    <div class="card-header">
+                        <h4 class="card-title">Localhost</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="http://127.0.0.1:8000/web/webCame"  style="width:100%; height:100%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
