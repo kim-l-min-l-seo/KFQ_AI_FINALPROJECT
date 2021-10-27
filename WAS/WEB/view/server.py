@@ -77,6 +77,7 @@ class View:
         from .imageAPI_client import ServerSocket
         server = ServerSocket('192.168.0.212', 9090)
         decimg = server.receiveImages
+        print(type(decimg))
         _, jpeg = cv2.imencode('.jpg',decimg)
         try :
             video = StreamingHttpResponse(jpeg.tobytes(), content_type="multipart/x-mixed-replace;boundary=frame")
