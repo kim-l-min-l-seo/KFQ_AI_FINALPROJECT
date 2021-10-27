@@ -20,7 +20,7 @@ class VideoCamera(object):
         image = None
         if mod == "webcam":
             image = self.frame
-            # print("image :",type(image))
+            print("VideoCamera - image :",type(image))
         elif mod == "ObjectDetection":
             image = ssdNet(self.frame)
         elif mod == "gesture-recognition":
@@ -28,7 +28,7 @@ class VideoCamera(object):
             image = image.gesture_recognition(self.frame)
         elif mod == "MaskDetection":
             image = maskDetection(self.frame)
-        # elif mod == "FireDetection":
+        # elif mod == "turtlebot":
         #     pass
         _, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()

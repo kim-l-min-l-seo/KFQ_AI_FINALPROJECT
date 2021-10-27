@@ -2,6 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators import gzip
 from django.http import StreamingHttpResponse
+from django.views.decorators.http import require_GET, require_POST
 
 import cv2
 import threading
@@ -72,19 +73,23 @@ class View:
         except:  # This is bad! replace it with proper handling
             print("Exception Error. ssdNet")
             pass
-
-    def imageAPI_Client(requests):
+    
+    def imageAPI_Client(request):
         from .imageAPI_client import ServerSocket
-        server = ServerSocket('192.168.0.212', 9090)
-        decimg = server.receiveImages
-        print(type(decimg))
-        _, jpeg = cv2.imencode('.jpg',decimg)
-        try :
-            video = StreamingHttpResponse(jpeg.tobytes(), content_type="multipart/x-mixed-replace;boundary=frame")
-            return video
-        except :  # This is bad! replace it with proper handling
-            print("Exception Error. Turtlebot Camera")
+
+        if request.method == 'POST':
             pass
+        else :
+            server = ServerSocket('192.168.0.212', 9090)
+            # jpeg = server.receiveImages()
+            # _, jpeg = cv2.imencode('.jpg',decimg)
+
+            # try :
+            #     video = StreamingHttpResponse(), content_type="multipart/x-mixed-replace;boundary=frame")
+            #     return video
+            # except :  # This is bad! replace it with proper handling
+            #     print("Exception Error. Turtlebot Camera")
+            #     pass
 
 def gen(camera,mod):
     print('gen() -mod :',mod)

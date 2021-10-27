@@ -1,5 +1,6 @@
 # IMAGE 수신 모듈
 
+from ctypes import sizeof
 import socket
 import cv2
 import time
@@ -7,6 +8,8 @@ from datetime import datetime
 import numpy
 import base64
 import threading
+
+stringData = None
 
 class ServerSocket:
     
@@ -23,14 +26,15 @@ class ServerSocket:
 
     def socketOpen(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
         self.sock.bind((self.TCP_IP, self.TCP_PORT))
         self.sock.listen(1)
         print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is open')
         self.conn, self.addr = self.sock.accept()
         print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is connected with client')
-
+    
     def receiveImages(self):
-
+        global stringData
         try:
             while True:
                 length = self.recvall(self.conn, 64)
@@ -42,7 +46,8 @@ class ServerSocket:
                 print('receive time: ' + datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'))
                 data = numpy.frombuffer(base64.b64decode(stringData), numpy.uint8)
                 decimg = cv2.imdecode(data, 1)
-                return decimg
+                cv2.imshow("image", decimg)
+                cv2.waitKey(1)
         except Exception as e:
             print(e)
             self.socketClose()
