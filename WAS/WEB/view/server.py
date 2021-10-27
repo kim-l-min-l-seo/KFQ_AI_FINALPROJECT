@@ -73,31 +73,17 @@ class View:
             print("Exception Error. ssdNet")
             pass
 
-    def deeplearning(request):
-        print("deeplearning() ")
-        
-        HOST = '192.168.50.199'
-        PORT = 9999
-
-        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client_socket.connect((HOST, PORT))
-
-        while True:
-            message = '1'
-            client_socket.send(message.encode())
-
-            length = recvall(client_socket, 16)
-            stringData = recvall(client_socket, int(length))
-            data = np.frombuffer(stringData, dtype='uint8')
-            decimg = cv2.imdecode(data, 1)
-            print("type(data) : ", type(data))
-            _, jpeg = cv2.imencode('.jpg',decimg)
-            try :
-                video = StreamingHttpResponse(jpeg.tobytes(), content_type="multipart/x-mixed-replace;boundary=frame")
-                return video
-            except :  # This is bad! replace it with proper handling
-                print("Exception Error. Turtlebot Camera")
-                pass
+    def imageAPI_Client(requests):
+        from .imageAPI_client import ServerSocket
+        server = ServerSocket('192.168.0.212', 9090)
+        decimg = server.receiveImages
+        _, jpeg = cv2.imencode('.jpg',decimg)
+        try :
+            video = StreamingHttpResponse(jpeg.tobytes(), content_type="multipart/x-mixed-replace;boundary=frame")
+            return video
+        except :  # This is bad! replace it with proper handling
+            print("Exception Error. Turtlebot Camera")
+            pass
 
 def gen(camera,mod):
     print('gen() -mod :',mod)
@@ -107,13 +93,3 @@ def gen(camera,mod):
             # print("mod  :",mod,"   FRAME type : ",type(frame))
         yield(b'--frame\r\n'
               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-
-def recvall(sock, count):
-    buf = b''
-    while count:
-        newbuf = sock.recv(count)
-        if not newbuf:
-            return None
-        buf += newbuf
-        count -= len(newbuf)
-    return buf
