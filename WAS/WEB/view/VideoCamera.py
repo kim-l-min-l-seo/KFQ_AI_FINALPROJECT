@@ -20,6 +20,7 @@ class VideoCamera(object):
         image = None
         if mod == "webcam":
             image = self.frame
+            # print("image :",type(image))
         elif mod == "ObjectDetection":
             image = ssdNet(self.frame)
         elif mod == "gesture-recognition":
@@ -34,6 +35,5 @@ class VideoCamera(object):
 
 
     def update(self):
-
         while True:
             (self.grabbed, self.frame) = self.video.read()
