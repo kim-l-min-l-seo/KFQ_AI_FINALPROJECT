@@ -12,20 +12,19 @@ import numpy as np
 from .VideoCamera import VideoCamera
 from .imageAPI_client import ServerSocket
 
+# Local Camera
 cam = VideoCamera()
-server = ServerSocket('192.168.0.212', 9090)
+ip = socket.gethostbyname(socket.gethostname())
 
 class View:
     # url mapping
     def server(request, hw, dl):
+        global ip
         print("hw :", hw, "  dl:",dl)
-        import socket
         import requests
         import re
 
-        print("내부 ip : ",socket.gethostbyname(socket.gethostname()))
-        ip = socket.gethostbyname(socket.gethostname())
-
+        print("내부 ip : ",ip)
         req = requests.get("http://ipconfig.kr")
 
         print("외부 IP : ", re.search(r'IP Address : (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', req.text)[1])
@@ -37,16 +36,21 @@ class View:
             'ip' : ip,
             'outip' : outip,
         }
+
         if hw == "master" and dl == "page":
             return render(request, './0_SERVER/1_master.html', context)
         elif hw == "proxy" and dl == "page":
             return render(request, './0_SERVER/2_proxy.html', context)
-        elif hw == "turtlebot" and dl == "page":
-            return render(request, './0_SERVER/3_turtlebot.html', context)
+        elif hw == "videotest" and dl == "page":
+            return render(request, './0_SERVER/3_videotest.html', context)
         elif hw == "template" and dl == "page":
             return render(request, './0_SERVER/4_template.html', context)
         elif hw == "template2" and dl == "page":
             return render(request, './0_SERVER/5_template_2.html', context)
+
+        # WebCamera
+        elif hw == "WebCamera" and dl =="none":
+            return render(request, './0_SERVER/WebCamera/WebCameraTest.html', context)
         elif hw == "WebCamera" and dl =="ObjectDetection":
             return render(request, './0_SERVER/WebCamera/ObjectDetection.html', context)
         elif hw == "WebCamera" and dl == "gesture-recognition":
@@ -56,52 +60,62 @@ class View:
         elif hw == "WebCamera" and dl == "FireDetection":
             return render(request, './0_SERVER/WebCamera/FireDetection.html', context)
 
-    def webCam(request):
-        global cam
-        try:
-            video = StreamingHttpResponse(
-                gen(cam, "webcam"), content_type="multipart/x-mixed-replace;boundary=frame")
-            return video
-        except:  # This is bad! replace it with proper handling
-            print("Exception Error. webCam")
-            pass
+        # Turtlebot
+        elif hw == "Turtlebot" and dl == "none":
+            return render(request, './0_SERVER/Turtlebot/TurtlebotCameraTest.html', context)
+        elif hw == "Turtlebot" and dl =="ObjectDetection":
+            return render(request, './0_SERVER/Turtlebot/ObjectDetection.html', context)
+        elif hw == "Turtlebot" and dl == "gesture-recognition":
+            return render(request, './0_SERVER/Turtlebot/gesture-recognition.html', context)
+        elif hw == "Turtlebot" and dl == "MaskDetection":
+            return render(request, './0_SERVER/Turtlebot/MaskDetection.html', context)
+        elif hw == "Turtlebot" and dl == "FireDetection":
+            return render(request, './0_SERVER/Turtlebot/FireDetection.html', context)
+
+
+    # def webCam(request):
+    #     global cam
+    #     try:
+    #         video = StreamingHttpResponse(
+    #             gen(cam, "webcam"), content_type="multipart/x-mixed-replace;boundary=frame")
+    #         return video
+    #     except:  # This is bad! replace it with proper handling
+    #         print("Exception Error. webCam")
+    #         pass
 
     def webCamera(request, model):
         print('model :', model)
         global cam
         try:
             video = StreamingHttpResponse(
-                gen(cam, model), content_type="multipart/x-mixed-replace;boundary=frame")
+                frame_webCamera(cam, model), content_type="multipart/x-mixed-replace;boundary=frame")
             return video
         except:  # This is bad! replace it with proper handling
             print("Exception Error. ssdNet")
             pass
     
+    #Turtlebot Camera URL
     def imageAPI_Client(request):
         if request.method == 'POST':
             print(" POST METHOD ")
         else :
-            # server = ServerSocket('192.168.0.212', 9090)
-            # jpeg = server.receiveImages()
-            # _, jpeg = cv2.imencode('.jpg',jpeg)
-
             try :
-                video = StreamingHttpResponse(gen2(), content_type="multipart/x-mixed-replace;boundary=frame")
+                video = StreamingHttpResponse(
+                    frame_turtlebot(), content_type="multipart/x-mixed-replace;boundary=frame")
                 return video
             except :  # This is bad! replace it with proper handling
                 print("Exception Error. imageAPI_Client")
                 pass
 
-def gen2():
-    global server
+# 터틀봇으로부터 이미지 수신
+def frame_turtlebot():
+    server = ServerSocket(ip, 9090)
     while True:
         frame = server.receiveImages()
-        # if mod == "webcam":
-            # print("mod  :",mod,"   FRAME type : ",type(frame))
         yield(b'--frame\r\n'
             b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
-def gen(camera,mod):
+def frame_webCamera(camera,mod):
     print('gen() -mod :',mod)
     while True:
         frame = camera.get_frame(mod)

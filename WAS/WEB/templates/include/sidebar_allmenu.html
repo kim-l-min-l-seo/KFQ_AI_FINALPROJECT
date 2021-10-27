@@ -1,0 +1,158 @@
+{% load static %}
+
+<!--**********************************
+    Sidebar start
+***********************************-->
+<div class="quixnav">
+    <div class="quixnav-scroll">
+        <ul class="metismenu" id="menu">
+            <li class="nav-label first">Main Menu</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">SERVER STATUS</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/monitoring/master/page">Master Server</a></li>
+                    <li><a href="/web/monitoring/proxy/page">Proxy Server</a></li>
+                    <li><a href="/web/monitoring/videotest/page">Video Test</a></li>
+                    <!-- template page -->
+                    <li><a href="/web/monitoring/template/page">template</a></li>
+                    <li><a href="/web/monitoring/template2/page">template2</a></li>
+
+                    
+                </ul>
+            </li>
+
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">WebCamera</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/monitoring/WebCamera/none">WebCameraTest</a></li>
+                    <li><a href="/web/monitoring/WebCamera/ObjectDetection">ObjectDetection</a></li>
+                    <li><a href="/web/monitoring/WebCamera/gesture-recognition">gesture-recognition</a></li>
+                    <li><a href="/web/monitoring/WebCamera/MaskDetection">MaskDetection</a></li>
+                    <li><a href="/web/monitoring/WebCamera/FireDetection">FireDetection</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">TurtlebotCamera</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/monitoring/Turtlebot/none">TurtlebotCameraTest</a></li>
+                    <li><a href="/web/monitoring/Turtlebot/ObjectDetection">ObjectDetection</a></li>
+                    <li><a href="/web/monitoring/Turtlebot/gesture-recognition">gesture-recognition</a></li>
+                    <li><a href="/web/monitoring/Turtlebot/MaskDetection">MaskDetection</a></li>
+                    <li><a href="/web/monitoring/Turtlebot/FireDetection">FireDetection</a></li>
+                </ul>
+            </li>
+
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/dashboard/index=1">Dashboard 1</a></li>
+                    <li><a href="/web/dashboard/index=2">Dashboard 2</a></li>
+                </ul>
+            </li>
+            <li class="nav-label">Apps</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-app-store"></i><span class="nav-text">Apps</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/apps/profile/x">Profile</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
+                        <ul aria-expanded="false">
+                            <li><a href="/web/apps/email/compose">Compose</a></li>
+                            <li><a href="/web/apps/email/inbox">Inbox</a></li>
+                            <li><a href="/web/apps/email/read">Read</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/web/apps/calender/x">Calendar</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-chart-bar-33"></i><span class="nav-text">Charts</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/charts/flot">Flot</a></li>
+                    <li><a href="/web/charts/morris">Morris</a></li>
+                    <li><a href="/web/charts/chartjs">Chartjs</a></li>
+                    <li><a href="/web/charts/chartist">Chartist</a></li>
+                    <li><a href="/web/charts/sparkline">Sparkline</a></li>
+                    <li><a href="/web/charts/peity">Peity</a></li>
+                </ul>
+            </li>
+            <li class="nav-label">Components</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-world-2"></i><span class="nav-text">Bootstrap</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/bootstrap/accordion">Accordion</a></li>
+                    <li><a href="/web/bootstrap/alert">Alert</a></li>
+                    <li><a href="/web/bootstrap/badge">Badge</a></li>
+                    <li><a href="/web/bootstrap/button">Button</a></li>
+                    <li><a href="/web/bootstrap/modal">Modal</a></li>
+                    <li><a href="/web/bootstrap/button-group">Button Group</a></li>
+                    <li><a href="/web/bootstrap/list-group">List Group</a></li>
+                    <li><a href="/web/bootstrap/media-object">Media Object</a></li>
+                    <li><a href="/web/bootstrap/card">Cards</a></li>
+                    <li><a href="/web/bootstrap/carousel">Carousel</a></li>
+                    <li><a href="/web/bootstrap/dropdown">Dropdown</a></li>
+                    <li><a href="/web/bootstrap/popover">Popover</a></li>
+                    <li><a href="/web/bootstrap/progressbar">Progressbar</a></li>
+                    <li><a href="/web/bootstrap/tab">Tab</a></li>
+                    <li><a href="/web/bootstrap/typography">Typography</a></li>
+                    <li><a href="/web/bootstrap/pagination">Pagination</a></li>
+                    <li><a href="/web/bootstrap/grid">Grid</a></li>
+                    <li><a href="/web/bootstrap/label">Label</a></li>
+                    <li><a href="/web/bootstrap/tooltip">Tooltip</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-plug"></i><span class="nav-text">Plugins</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/plugins/select2">Select 2</a></li>
+                    <li><a href="/web/plugins/nestable">Nestedable</a></li>
+                    <li><a href="/web/plugins/noui-slider1">Noui Slider</a></li>
+                    <li><a href="/web/plugins/sweetalert">Sweet Alert</a></li>
+                    <li><a href="/web/plugins/toastr">Toastr</a></li>
+                    <li><a href="/web/plugins/map-jqvmap">Jqv Map</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/web/widget" aria-expanded="false">
+                    <i class="icon icon-globe-2"></i>
+                    <span class="nav-text">Widget</span>
+                </a>
+            </li>
+            <li class="nav-label">Forms</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-form"></i><span class="nav-text">Forms</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/form/element">Form Elements</a></li>
+                    <li><a href="/web/form/wizard">Wizard</a></li>
+                    <li><a href="/web/form/editor-summernote">Summernote</a></li>
+                    <li><a href="/web/form/pickers">Pickers</a></li>
+                    <li><a href="/web/form/validation-jquery">Jquery Validate</a></li>
+                </ul>
+            </li>
+            <li class="nav-label">Table</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-layout-25"></i><span class="nav-text">Table</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/web/table/bootstrap-basic">Bootstrap</a></li>
+                    <li><a href="/web/table/datatable-basic">Datatable</a></li>
+                </ul>
+            </li>
+            <li class="nav-label">Extra</li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-single-copy-06"></i><span class="nav-text">Pages</span></a>
+                <ul aria-expanded="false">
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
+                        <ul aria-expanded="false">
+                            <li><a href="/web/page/error-400">Error 400</a></li>
+                            <li><a href="/web/page/error-403">Error 403</a></li>
+                            <li><a href="/web/page/error-404">Error 404</a></li>
+                            <li><a href="/web/page/error-500">Error 500</a></li>
+                            <li><a href="/web/page/error-503">Error 503</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/web/page/lock-screen">Lock Screen</a></li>
+                    <li><a href="/web/page/login">Login</a></li>
+                    <li><a href="/web/page/register">Register</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--**********************************
+    Sidebar end
+***********************************-->
