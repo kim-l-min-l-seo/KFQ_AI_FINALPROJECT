@@ -23,10 +23,11 @@ class ServerSocket:
     def socketClose(self):
         self.sock.close()
         print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is close')
+        self.sock = None
 
     def socketOpen(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
+        # self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
         self.sock.bind((self.TCP_IP, self.TCP_PORT))
         self.sock.listen(1)
         print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is open')
@@ -41,13 +42,15 @@ class ServerSocket:
                 length1 = length.decode('utf-8')
                 stringData = self.recvall(self.conn, int(length1))
                 stime = self.recvall(self.conn, 64)
-                print('send time: ' + stime.decode('utf-8'))
+                # print('send time: ' + stime.decode('utf-8'))
                 now = time.localtime()
-                print('receive time: ' + datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'))
+                # print('receive time: ' + datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'))
                 data = numpy.frombuffer(base64.b64decode(stringData), numpy.uint8)
                 decimg = cv2.imdecode(data, 1)
+                # _, jpeg = cv2.imencode('.jpg', data)
                 cv2.imshow("image", decimg)
                 cv2.waitKey(1)
+                return data.tobytes()
         except Exception as e:
             print(e)
             self.socketClose()
@@ -65,8 +68,8 @@ class ServerSocket:
             count -= len(newbuf)
         return buf
 
-def main():
-    server = ServerSocket('192.168.0.212', 9090)
+# def main():
+#     server = ServerSocket('192.168.0.212', 9090)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

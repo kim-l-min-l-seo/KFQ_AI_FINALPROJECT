@@ -10,8 +10,11 @@ import socket
 import numpy as np
 
 from .VideoCamera import VideoCamera
+from .imageAPI_client import ServerSocket
 
 cam = VideoCamera()
+server = ServerSocket('192.168.0.212', 9090)
+
 class View:
     # url mapping
     def server(request, hw, dl):
@@ -75,21 +78,28 @@ class View:
             pass
     
     def imageAPI_Client(request):
-        from .imageAPI_client import ServerSocket
-
         if request.method == 'POST':
-            pass
+            print(" POST METHOD ")
         else :
-            server = ServerSocket('192.168.0.212', 9090)
+            # server = ServerSocket('192.168.0.212', 9090)
             # jpeg = server.receiveImages()
-            # _, jpeg = cv2.imencode('.jpg',decimg)
+            # _, jpeg = cv2.imencode('.jpg',jpeg)
 
-            # try :
-            #     video = StreamingHttpResponse(), content_type="multipart/x-mixed-replace;boundary=frame")
-            #     return video
-            # except :  # This is bad! replace it with proper handling
-            #     print("Exception Error. Turtlebot Camera")
-            #     pass
+            try :
+                video = StreamingHttpResponse(gen2(), content_type="multipart/x-mixed-replace;boundary=frame")
+                return video
+            except :  # This is bad! replace it with proper handling
+                print("Exception Error. imageAPI_Client")
+                pass
+
+def gen2():
+    global server
+    while True:
+        frame = server.receiveImages()
+        # if mod == "webcam":
+            # print("mod  :",mod,"   FRAME type : ",type(frame))
+        yield(b'--frame\r\n'
+            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 def gen(camera,mod):
     print('gen() -mod :',mod)
