@@ -94,57 +94,57 @@ class Gesture_recognition:
                         this_action = action
 
                     print("action : ", action)
-                    if action == "up":
-                        print(" 위 ")
-                        data = {
-                            'keyCode': 87,
-                            'hasShift': 0,
-                            'hasCtrl': 0,
-                            'hasAlt': 0
-                        }
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
+                    # if action == "up":
+                    #     print(" 위 ")
+                    #     data = {
+                    #         'keyCode': 87,
+                    #         'hasShift': 0,
+                    #         'hasCtrl': 0,
+                    #         'hasAlt': 0
+                    #     }
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
                         
-                    elif action == "left":
-                        print(" 왼쪽 ")
-                        data = {
-                            'keyCode': 65,
-                            'hasShift': 0,
-                            'hasCtrl': 0,
-                            'hasAlt': 0
-                        }
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
+                    # elif action == "left":
+                    #     print(" 왼쪽 ")
+                    #     data = {
+                    #         'keyCode': 65,
+                    #         'hasShift': 0,
+                    #         'hasCtrl': 0,
+                    #         'hasAlt': 0
+                    #     }
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
 
-                    elif action == "right":
-                        print(" 오른쪽 ")
-                        data = {
-                            'keyCode': 68,
-                            'hasShift': 0,
-                            'hasCtrl': 0,
-                            'hasAlt': 0
-                        }
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
+                    # elif action == "right":
+                    #     print(" 오른쪽 ")
+                    #     data = {
+                    #         'keyCode': 68,
+                    #         'hasShift': 0,
+                    #         'hasCtrl': 0,
+                    #         'hasAlt': 0
+                    #     }
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
 
-                    elif action == "down":
-                        print(" 아래 ")
-                        data = {
-                            'keyCode': 83,
-                            'hasShift': 0,
-                            'hasCtrl': 0,
-                            'hasAlt': 0
-                        }
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
-                        requests.post(URL, data=json.dumps(data))
+                    # elif action == "down":
+                    #     print(" 아래 ")
+                    #     data = {
+                    #         'keyCode': 83,
+                    #         'hasShift': 0,
+                    #         'hasCtrl': 0,
+                    #         'hasAlt': 0
+                    #     }
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
+                    #     requests.post(URL, data=json.dumps(data))
 
                     cv2.putText(img, f'{this_action.upper()}',
                                 org=(int(

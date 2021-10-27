@@ -10,8 +10,6 @@ import numpy as np
 
 from .VideoCamera import VideoCamera
 
-
-
 cam = VideoCamera()
 class View:
     # url mapping
@@ -64,8 +62,6 @@ class View:
         print('model :', model)
         global cam
         try:
-            # ssdNet = VideoCamera()
-            # grabbed, frame = ssdNet.read()
             video = StreamingHttpResponse(
                 gen(cam, model), content_type="multipart/x-mixed-replace;boundary=frame")
             return video
@@ -73,34 +69,40 @@ class View:
             print("Exception Error. ssdNet")
             pass
 
-    def deeplearning(request, model):
+    def deeplearning(request):
+        print("deeplearning() ")
         
-        HOST = '192.168.50.210'
+        HOST = '192.168.50.199'
         PORT = 9999
 
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client_socket.connect((HOST, PORT))
 
-
         while True:
-
             message = '1'
             client_socket.send(message.encode())
 
             length = recvall(client_socket, 16)
             stringData = recvall(client_socket, int(length))
             data = np.frombuffer(stringData, dtype='uint8')
-
             decimg = cv2.imdecode(data, 1)
-            return decimg
+            print("type(data) : ", type(data))
+            _, jpeg = cv2.imencode('.jpg',decimg)
+            try :
+                video = StreamingHttpResponse(jpeg.tobytes(), content_type="multipart/x-mixed-replace;boundary=frame")
+                return video
+            except :  # This is bad! replace it with proper handling
+                print("Exception Error. Turtlebot Camera")
+                pass
 
 def gen(camera,mod):
     print('gen() -mod :',mod)
     while True:
         frame = camera.get_frame(mod)
+        # if mod == "webcam":
+            # print("mod  :",mod,"   FRAME type : ",type(frame))
         yield(b'--frame\r\n'
               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-
 
 def recvall(sock, count):
     buf = b''
