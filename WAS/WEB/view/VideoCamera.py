@@ -9,7 +9,7 @@ from .WebCamera.MaskDetection import maskDetection
 class VideoCamera(object):
     def __init__(self):
         # 실시간 영상캡처 및 Thread 시작
-        self.video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        self.video = cv2.VideoCapture(1, cv2.CAP_DSHOW)
         (self.grabbed, self.frame) = self.video.read()
         threading.Thread(target=self.update, args=()).start()
 
