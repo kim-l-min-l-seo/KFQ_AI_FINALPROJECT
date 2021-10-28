@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% include "include/head_ros.html" %}
+{% include "include/head.html" %}
 
 <body onload="init()">
 
@@ -36,9 +36,9 @@
         <div class="content-body">
             <div class="container-fluid">
 
-                {% include "0_SERVER/3_turtlebot/1_title.html" %}
-                {% include "0_SERVER/3_turtlebot/2_statusValue.html" %}
-                <!-- {% include "0_SERVER/3_turtlebot/3_camera.html" %} -->
+                {% comment %}{% include "0_SERVER/3_turtlebot/1_title.html" %}
+                {% include "0_SERVER/3_turtlebot/2_statusValue.html" %}{% endcomment %}
+                {% include "0_SERVER/3_turtlebot/3_camera.html" %}
 
             </div>
         </div>
