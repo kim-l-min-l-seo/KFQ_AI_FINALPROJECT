@@ -2,22 +2,28 @@
 <!-- Status -->
 
 <div class="row">
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
-            <div class="stat-widget-one card-body">
-                <!-- <div class="stat-icon d-inline-block">
-                    <i class="ti-money text-success border-success"></i>
-                </div> -->
-                <div class="stat-content d-inline-block">
-                    <div id="map" style='height: 100%; width: 100%;'></div>
-                    <!-- <div class="stat-text">마스크</div>
-                    <div class="stat-digit">1,012</div> -->
-                </div>
+
+    <!-- 카메라 -->
+    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+        <div class="card h-100">
+            <div class="card-body">
+                여기다가 카메라 달고 싶습니다
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
+
+    <!-- 지도 -->
+    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+        <div class="card h-100">
+            <div class="card-body">
+                <div id="map" style='height: 100%; width: 100%; margin: -10px'></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 컨트롤러 -->
+    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+        <div class="card h-100">
             <div class="stat-widget-one card-body">
                 <div class="stat-icon d-inline-block">
                     <i class="ti-user text-primary border-primary"></i>
@@ -34,29 +40,65 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
+
+</div>
+<div class="row">
+    
+    <!-- 인공지능 관련 메세지 -->
+    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+        <div class="card h-100">
             <div class="stat-widget-one card-body">
-                <div class="stat-icon d-inline-block">
-                    <i class="ti-layout-grid2 text-pink border-pink"></i>
-                </div>
                 <div class="stat-content d-inline-block">
-                    <div class="stat-text">Velocity</div>
-                    <div id="vel"></div>
+                    여기다가 인공지능 결과 관련 메세지를?
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    
+    <!-- 자율주행 관련 메세지 -->
+    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+        <div class="card h-100">
+            <div class="stat-widget-one card-body">
+                <div class="stat-content d-inline-block">
+                    <div id="nav_status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 속도 관련 메세지 -->
+    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+        <div class="card h-100">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <div class="stat-text">전후속도</div>
+                    <div class="stat-text">좌우속도</div>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div id="vel_linear_x"></div>
+                    <div id="vel_angular_z"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- 센서데이터 관련 메세지 -->
+    <div class="col-xl-12 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card">
             <div class="stat-widget-one card-body">
-                <!-- <div class="stat-icon d-inline-block">
-                    <i class="ti-link text-danger border-danger"></i>
-                </div> -->
                 <div class="stat-content d-inline-block">
-                    <div id="zone_joystick" style="position: relative;"></div>
-                    <!-- <div class="stat-text">Referral</div>
-                    <div class="stat-digit">2,781</div> -->
+                    <div id="imu_orientation_w"></div>
+                    <div id="imu_orientation_x"></div>
+                    <div id="imu_orientation_y"></div>
+                    <div id="imu_orientation_z"></div>
+                    <div id="imu_angular_velocity_x"></div>
+                    <div id="imu_angular_velocity_y"></div>
+                    <div id="imu_angular_velocity_z"></div>
+                    <div id="imu_linear_acceleration_x"></div>
+                    <div id="imu_linear_acceleration_y"></div>
+                    <div id="imu_linear_acceleration_z"></div>
                 </div>
             </div>
         </div>

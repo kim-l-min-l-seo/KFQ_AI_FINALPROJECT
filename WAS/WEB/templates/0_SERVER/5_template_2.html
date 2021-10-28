@@ -34,9 +34,9 @@
             Content body start
         ***********************************-->
         <div class="content-body">
+            
+            {% include "0_SERVER/3_turtlebot/1_title.html" %}
             <div class="container-fluid">
-
-                {% include "0_SERVER/3_turtlebot/1_title.html" %}
                 {% include "0_SERVER/3_turtlebot/2_statusValue.html" %}
 
             </div>
@@ -50,10 +50,15 @@
     ***********************************-->
 
     {% comment %} {% include "include/script.html" %} {% endcomment %}
-<script src="{% static 'ver1/vendor/global/global.min.js' %}"></script>
-<script src="{% static 'ver1/js/quixnav-init.js' %}"></script>
-<script src="{% static 'ver1/vendor/quixnav/quixnav.min.js' %}"></script>
-<script src="{% static 'ver1/js/custom.min.js' %}"></script>
+    <script src="{% static 'ver1/vendor/global/global.min.js' %}"></script>
+    <script src="{% static 'ver1/js/quixnav-init.js' %}"></script>
+    <script src="{% static 'ver1/vendor/quixnav/quixnav.min.js' %}"></script>
+    <script src="{% static 'ver1/js/custom.min.js' %}"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <!-- detect browser for best performance in js-->
+    <script src="http://jquery.thewikies.com/browser/jquery.browser.js"></script>
+    <script src="http://code.jquery.com/jquery-1.3.2.min.js"></script>
+    <script src="{% static 'cssterm/scripts/cssterm.js' %}"></script>
 </body>
 
 </html>

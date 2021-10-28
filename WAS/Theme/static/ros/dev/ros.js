@@ -60,8 +60,8 @@ function init() {
   // Create the main viewer.
   var viewer = new ROS2D.Viewer({
     divID : 'map',
-    width : 300,
-    height : 300
+    width : 480,
+    height : 480
   });
 
   var nav = NAV2D.OccupancyGridClientNav({
@@ -94,15 +94,10 @@ function init() {
   });
   // Then we add a callback to be called every time a message is published on this topic.
   cmd_vel_listener.subscribe(function(cmd_vel) {
-    console.log(cmd_vel_listener.name + 'linear x: ' + cmd_vel.linear.x);
-    // console.log(cmd_vel_listener.name + 'linear y: ' + cmd_vel.linear.y);
-    // console.log(cmd_vel_listener.name + 'linear z: ' + cmd_vel.linear.z);
-    // console.log(cmd_vel_listener.name + 'angular x: ' + cmd_vel.angular.x);
-    // console.log(cmd_vel_listener.name + 'angular y: ' + cmd_vel.angular.y);
-    // console.log(cmd_vel_listener.name + 'angular z: ' + cmd_vel.angular.z);
-    // console.log(cmd_vel);
-    var vel = document.getElementById('vel');
-    vel.innerText = cmd_vel.linear.x;
+    var vel_x = document.getElementById('vel_linear_x');
+    vel_x.innerText = cmd_vel.linear.x;
+    var vel_z = document.getElementById('vel_angular_z');
+    vel_z.innerText = cmd_vel.angular.z;
   });
 
   // imu
@@ -111,9 +106,28 @@ function init() {
     name : '/imu',
     messageType : 'sensor_msgs/Imu'
   });
-  // Then we add a callback to be called every time a message is published on this topic.
+  // // Then we add a callback to be called every time a message is published on this topic.
   imu_listener.subscribe(function(imu) {
-    // console.dir(imu);
+    var imu_orientation_w = document.getElementById('imu_orientation_w');
+    imu_orientation_w.innerText = 'w: '+imu.orientation.w;
+    var imu_orientation_x = document.getElementById('imu_orientation_x');
+    imu_orientation_x.innerText = 'x: '+imu.orientation.x;
+    var imu_orientation_y = document.getElementById('imu_orientation_y');
+    imu_orientation_y.innerText = 'y: '+imu.orientation.y;
+    var imu_orientation_z = document.getElementById('imu_orientation_z');
+    imu_orientation_z.innerText = 'z: '+imu.orientation.z;
+    var imu_angular_velocity_x = document.getElementById('imu_angular_velocity_x');
+    imu_angular_velocity_x.innerText = 'x: '+imu.angular_velocity.x;
+    var imu_angular_velocity_y = document.getElementById('imu_angular_velocity_y');
+    imu_angular_velocity_y.innerText = 'y: '+imu.angular_velocity.y;
+    var imu_angular_velocity_z = document.getElementById('imu_angular_velocity_z');
+    imu_angular_velocity_z.innerText = 'z: '+imu.angular_velocity.z;
+    var imu_linear_acceleration_x = document.getElementById('imu_linear_acceleration_x');
+    imu_linear_acceleration_x.innerText = 'x: '+imu.linear_acceleration.x;
+    var imu_linear_acceleration_y = document.getElementById('imu_linear_acceleration_y');
+    imu_linear_acceleration_y.innerText = 'y: '+imu.linear_acceleration.y;
+    var imu_linear_acceleration_z = document.getElementById('imu_linear_acceleration_z');
+    imu_linear_acceleration_z.innerText = 'z: '+imu.linear_acceleration.z;
   });
 
   // // battery state
@@ -128,80 +142,24 @@ function init() {
   //   // console.log(status);
   // });
 
-  //
-  //
-  var txt_listener = new ROSLIB.Topic({
+  // cmd_vel
+  var nav_status = new ROSLIB.Topic({
     ros : ros,
-    name : '/txt_msg',
-    messageType : 'std_msgs/String'
+    name : '/move_base/status',
+    messageType : 'actionlib_msgs/GoalStatusArray'
   });
-
-  txt_listener.subscribe(function(m) {
-    document.getElementById("msg").innerHTML = m.data;
+  // Then we add a callback to be called every time a message is published on this topic.
+  nav_status.subscribe(function(status) {
+    var length = status.status_list.length;
+    if (length == 1){
+      var nav_status = document.getElementById('nav_status');
+      nav_status.innerText = status.status_list[0].text;
+      // console.log(status.status_list[0]);
+    }
+    else {
+      var nav_status = document.getElementById('nav_status');
+      nav_status.innerText = status.status_list[1].text;
+      // console.log(status.status_list[1]);
+    }
   });
-
-  move = function (linear, angular) {
-    var twist = new ROSLIB.Message({
-      linear: {
-        x: linear,
-        y: 0,
-        z: 0
-      },
-      angular: {
-        x: 0,
-        y: 0,
-        z: angular
-      }
-    });
-    cmd_vel_listener.publish(twist);
-  }
-
-  // 
-  txt_listener.subscribe(function(m) {
-    document.getElementById("msg").innerHTML = m.data;
-    move(1, 0);
-  });
-
-  //
-  createJoystick = function () {
-    var options = {
-      zone: document.getElementById('zone_joystick'),
-      threshold: 0.1,
-      position: { left: 50 + '%' },
-      mode: 'static',
-      size: 150,
-      color: '#000000',
-    };
-    manager = nipplejs.create(options);
-
-    linear_speed = 0;
-    angular_speed = 0;
-
-    self.manager.on('start', function (event, nipple) {
-      console.log("Movement start");
-      timer = setInterval(function () {
-        move(linear_speed, angular_speed);
-      }, 25);
-    });
-
-    self.manager.on('move', function (event, nipple) {
-      console.log("Moving");
-      max_linear = 5.0; // m/s
-      max_angular = 2.0; // rad/s
-      max_distance = 75.0; // pixels;
-      linear_speed = Math.sin(nipple.angle.radian) * max_linear * nipple.distance/max_distance;
-      angular_speed = -Math.cos(nipple.angle.radian) * max_angular * nipple.distance/max_distance;
-    });
-
-    self.manager.on('end', function () {
-      console.log("Movement end");
-      if (timer) {
-        clearInterval(timer);
-      }
-      self.move(0, 0);
-    });
-  }
-  window.onload = function () {
-    createJoystick();
-  }
 }
