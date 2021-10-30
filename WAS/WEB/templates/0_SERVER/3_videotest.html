@@ -4,7 +4,7 @@
 
 {% include "include/head.html" %}
 
-<body>
+<body onload="init()">
 
     <!--*******************
         Preloader start
@@ -36,8 +36,8 @@
         <div class="content-body">
             <div class="container-fluid">
 
-                {% include "0_SERVER/3_turtlebot/1_title.html" %}
-                {% include "0_SERVER/3_turtlebot/2_statusValue.html" %}
+                {% comment %}{% include "0_SERVER/3_turtlebot/1_title.html" %}
+                {% include "0_SERVER/3_turtlebot/2_statusValue.html" %}{% endcomment %}
                 {% include "0_SERVER/3_turtlebot/3_camera.html" %}
 
             </div>
