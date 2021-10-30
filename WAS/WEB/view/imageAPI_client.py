@@ -9,6 +9,11 @@ import numpy
 import base64
 import threading
 
+#WebCamera Version Module import
+from .TurtlebotCamera.ssdNet import ssdNet
+from .TurtlebotCamera.gesture_recognition import Gesture_recognition
+from .TurtlebotCamera.MaskDetection import maskDetection
+
 stringData = None
 
 class ServerSocket:
@@ -29,12 +34,12 @@ class ServerSocket:
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
         self.sock.bind((self.TCP_IP, self.TCP_PORT))
-        self.sock.listen(1)
+        self.sock.listen(0)
         print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is open')
         self.conn, self.addr = self.sock.accept()
         print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is connected with client')
     
-    def receiveImages(self):
+    def receiveImages(self, model):
         global stringData
         try:
             while True:
@@ -46,10 +51,23 @@ class ServerSocket:
                 now = time.localtime()
                 # print('receive time: ' + datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'))
                 data = numpy.frombuffer(base64.b64decode(stringData), numpy.uint8)
-                decimg = cv2.imdecode(data, 1)
+                
+                if model == "webcam":
+                    pass
+                elif model == "ObjectDetection":
+                    image = ssdNet(data)
+                elif model == "gesture-recognition":
+                    image = Gesture_recognition()
+                    image = image.gesture_recognition(data)
+                elif model == "MaskDetection":
+                    image = maskDetection(data)
+                else:
+                    pass
+                
+                # decimg = cv2.imdecode(data, 1)
                 # _, jpeg = cv2.imencode('.jpg', data)
-                cv2.imshow("image", decimg)
-                cv2.waitKey(1)
+                # cv2.imshow("image", decimg)
+                # cv2.waitKey(1)
                 return data.tobytes()
         except Exception as e:
             print(e)

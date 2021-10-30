@@ -14,16 +14,16 @@ from .imageAPI_client import ServerSocket
 
 # Local Camera
 cam = VideoCamera()
-ip = socket.gethostbyname(socket.gethostname())
-
+# server = ServerSocket('192.168.219.104', 9090)
 class View:
     # url mapping
     def server(request, hw, dl):
-        global ip
         print("hw :", hw, "  dl:",dl)
         import requests
         import re
 
+        # ip = socket.gethostbyname(socket.gethostname())
+        ip = '192.168.219.104'
         print("내부 ip : ",ip)
         req = requests.get("http://ipconfig.kr")
 
@@ -91,33 +91,39 @@ class View:
                 frame_webCamera(cam, model), content_type="multipart/x-mixed-replace;boundary=frame")
             return video
         except:  # This is bad! replace it with proper handling
-            print("Exception Error. ssdNet")
+            print("Exception Error. webCamera")
             pass
     
     #Turtlebot Camera URL
-    def imageAPI_Client(request):
+    def imageAPI_Client(request, model):
+        socket = ServerSocket('192.168.219.104', 9090)
         if request.method == 'POST':
             print(" POST METHOD ")
         else :
             try :
                 video = StreamingHttpResponse(
-                    frame_turtlebot(), content_type="multipart/x-mixed-replace;boundary=frame")
+                    frame_turtlebot(model, socket), content_type="multipart/x-mixed-replace;boundary=frame")
                 return video
             except :  # This is bad! replace it with proper handling
                 print("Exception Error. imageAPI_Client")
                 pass
 
 # 터틀봇으로부터 이미지 수신
-def frame_turtlebot():
-    server = ServerSocket(ip, 9090)
+def frame_turtlebot(model, socket):
+    global count
+    global server
+    print("Turtlebot model : ", model)
+        
     while True:
-        frame = server.receiveImages()
+        frame = socket.receiveImages(model)
         yield(b'--frame\r\n'
-            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
+# Local Camera Frame
 def frame_webCamera(camera,mod):
     print('gen() -mod :',mod)
     while True:
+        # frame = video.read()
         frame = camera.get_frame(mod)
         # if mod == "webcam":
             # print("mod  :",mod,"   FRAME type : ",type(frame))
