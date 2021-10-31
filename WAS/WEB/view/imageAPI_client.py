@@ -1,4 +1,10 @@
 # IMAGE 수신 모듈
+# -------------------------- 2021 - 11 - 01 -------------------------- #
+# ***************** imageAPI_client.py module issue ****************** #
+# log 추가 - # Document > MODULE > IMAGE_API > test.py 참고하여 파일기록으로 추후 전환
+# LOG를 logging으로 찍으면 프래임깨짐이 없음
+# LOG를 logger로 변경하면 프래임드랍 발생
+# -------------------------- -------------- -------------------------- #
 
 from ctypes import sizeof
 import socket
@@ -9,22 +15,7 @@ import numpy
 import base64
 import threading
 
-# Stream에 로그 기록
 import logging
-# logging.basicConfig(filename='ImageAPI.log', level=logging.INFO)
-# logger = logging.getLogger(__name__)
-
-# # loghandler 생성
-# streamHandler = logging.StreamHandler()
-# fileHandler = logging.FileHandler('ImageAPI.log')
-
-# # logger instance 설정
-# logger.addHandler(streamHandler)
-# logger.addHandler(fileHandler)
-
-# # logger instance level 설정
-# logger.setLevel(level=logging.WARNING)
-
 
 #WebCamera Version Module import
 from .TurtlebotCamera.ssdNet import ssdNet
@@ -83,7 +74,6 @@ class ServerSocket:
                 try:
                     if model == "webcam":
                         data = ssdNet(data)
-                        # pass
                     elif model == "ObjectDetection":
                         data = ssdNet(data)
                     elif model == "gesture-recognition":
@@ -105,7 +95,7 @@ class ServerSocket:
                 self.receiveThread = threading.Thread(target=self.receiveImages)
                 self.receiveThread.start()
             else:
-                # print("gsock is not None : ",gsock)
+                logging.info("gsock is not None : ", gsock)
                 pass
 
     def recvall(self, sock, count):

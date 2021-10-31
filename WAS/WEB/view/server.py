@@ -1,3 +1,16 @@
+# -------------------------- 2021 - 11 - 01 -------------------------- #
+# ********************** server.py module issue ********************** #
+# [socket = ServerSocket(ip, 9090)] 관련
+# 이미지를 수신하는 PAGE에서 소켓에 접속하는 구조로 변경시
+# 해당 PAGE로 접속할 때 마다 소켓에 중복접근 - PAGE RELOAD 불가
+
+# WEB 실행시 단 한번만 소켓에 접근하고 그 이후는 연결하지 않도록 변경
+# PAGE RELOAD 가능, RELOAD TEST중 FRAME이 깨지는 현상을 분석하기 위해
+# LOG를 추가하였고 level 단위를 WARNING 지정 및 로그 분석 후 주석처리
+# LOG를 logging으로 찍으면 프래임깨짐이 없음
+# logger로 변경하면 프래임드랍 발생
+# -------------------------- -------------- -------------------------- #
+
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators import gzip
@@ -26,24 +39,12 @@ logger.addHandler(streamHandler)
 logger.addHandler(fileHandler)
 
 # logger instance level 설정
-logger.setLevel(level=logging.WARNING)
+logger.setLevel(level=logging.INFO)
 
 # Local Camera
 cam = VideoCamera()
 ip = '192.168.219.100'
 socket = ServerSocket(ip, 9090)
-
-# -------------------------------------------------- #
-# 2021 - 11 - 01
-# ***** server.py module issue *****
-# [socket = ServerSocket(ip, 9090)] 관련
-# 이미지를 수신하는 PAGE에서 소켓에 접속하는 구조로 변경시
-# 해당 PAGE로 접속할 때 마다 소켓에 중복접근 - PAGE RELOAD 불가
-
-# WEB 실행시 단 한번만 소켓에 접근하고 그 이후는 연결하지 않도록 변경
-# PAGE RELOAD 가능, RELOAD TEST중 FRAME이 깨지는 현상을 분석하기 위해
-# LOG를 추가하였고 level 단위를 WARNING 지정 및 로그 분석 후 주석처리
-# 주석처리 후 FRAME 깨짐현상 없어짐 - 원인분석中 ...
 
 class View:
     # url mapping
