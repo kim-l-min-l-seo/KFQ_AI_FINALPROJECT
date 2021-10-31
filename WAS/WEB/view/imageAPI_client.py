@@ -41,7 +41,6 @@ class ServerSocket:
     
     def receiveImages(self, model):
         global stringData
-        print("model : ",type(model))
         
         try:
             while True:
@@ -68,7 +67,8 @@ class ServerSocket:
                     else:
                         pass
                 except Exception as e:
-                    print("exception >>>",e)
+                    # print("exception >>>",e)
+                    pass
                 
                 # decimg = cv2.imdecode(data, 1)
                 # _, jpeg = cv2.imencode('.jpg', data)
