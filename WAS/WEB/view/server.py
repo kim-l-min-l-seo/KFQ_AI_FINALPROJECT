@@ -12,20 +12,48 @@ import numpy as np
 from .VideoCamera import VideoCamera
 from .imageAPI_client import ServerSocket
 
+# Stream에 로그 기록
+import logging
+# logging.basicConfig(filename='ImageAPI.log', level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# loghandler 생성
+streamHandler = logging.StreamHandler()
+fileHandler = logging.FileHandler('ImageAPI.log')
+
+# logger instance 설정
+logger.addHandler(streamHandler)
+logger.addHandler(fileHandler)
+
+# logger instance level 설정
+logger.setLevel(level=logging.WARNING)
+
 # Local Camera
 cam = VideoCamera()
 ip = '192.168.219.100'
 socket = ServerSocket(ip, 9090)
-# server = ServerSocket('192.168.219.104', 9090)
+
+# -------------------------------------------------- #
+# 2021 - 11 - 01
+# ***** server.py module issue *****
+# [socket = ServerSocket(ip, 9090)] 관련
+# 이미지를 수신하는 PAGE에서 소켓에 접속하는 구조로 변경시
+# 해당 PAGE로 접속할 때 마다 소켓에 중복접근 - PAGE RELOAD 불가
+
+# WEB 실행시 단 한번만 소켓에 접근하고 그 이후는 연결하지 않도록 변경
+# PAGE RELOAD 가능, RELOAD TEST중 FRAME이 깨지는 현상을 분석하기 위해
+# LOG를 추가하였고 level 단위를 WARNING 지정 및 로그 분석 후 주석처리
+# 주석처리 후 FRAME 깨짐현상 없어짐 - 원인분석中 ...
+
 class View:
     # url mapping
     def server(request, hw, dl):
         global ip
-        print("hw :", hw, "  dl:",dl)
+        logging.info("hw :", hw, "  dl:", dl)
         import requests
         import re
 
-        print("내부 ip : ",ip)
+        logging.info("내부 ip : ", ip)
         req = requests.get("http://ipconfig.kr")
 
 
@@ -72,14 +100,14 @@ class View:
             return render(request, './0_SERVER/Turtlebot/FireDetection.html', context)
 
     def webCamera(request, model):
-        print('model :', model)
         global cam
+        logging.info('model :', model)
         try:
             video = StreamingHttpResponse(
                 frame_webCamera(cam, model), content_type="multipart/x-mixed-replace;boundary=frame")
             return video
         except:  # This is bad! replace it with proper handling
-            print("Exception Error. webCamera")
+            logging.info("Exception Error. webCamera")
             pass
     
     #Turtlebot Camera URL
@@ -88,7 +116,7 @@ class View:
         # socket = ServerSocket('192.168.43.130', 9090)
         # socket = ServerSocket(ip, 9090)
         if request.method == 'POST':
-            print(" POST METHOD ")
+            logging.info(" POST METHOD ")
         else :
             try :
                 video = StreamingHttpResponse(
@@ -102,7 +130,7 @@ class View:
 def frame_turtlebot(model, socket):
     global count
     global server
-    print("Turtlebot model : ", model)
+    logging.info("Turtlebot model : ", model)
         
     while True:
         try :
@@ -112,9 +140,10 @@ def frame_turtlebot(model, socket):
         except Exception as e :
             # print("frame_turtlebot exception >>",e)
             pass
+
 # Local Camera Frame
 def frame_webCamera(camera,mod):
-    print('gen() -mod :',mod)
+    logging.info('gen() -mod :', mod)
     while True:
         # frame = video.read()
         frame = camera.get_frame(mod)

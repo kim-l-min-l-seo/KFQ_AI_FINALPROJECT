@@ -12,18 +12,18 @@ import threading
 # Stream에 로그 기록
 import logging
 # logging.basicConfig(filename='ImageAPI.log', level=logging.INFO)
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
-# loghandler 생성
-streamHandler = logging.StreamHandler()
-fileHandler = logging.FileHandler('ImageAPI.log')
+# # loghandler 생성
+# streamHandler = logging.StreamHandler()
+# fileHandler = logging.FileHandler('ImageAPI.log')
 
-# logger instance 설정
-logger.addHandler(streamHandler)
-logger.addHandler(fileHandler)
+# # logger instance 설정
+# logger.addHandler(streamHandler)
+# logger.addHandler(fileHandler)
 
-# logger instance level 설정
-logger.setLevel(level=logging.WARNING)
+# # logger instance level 설정
+# logger.setLevel(level=logging.WARNING)
 
 
 #WebCamera Version Module import
