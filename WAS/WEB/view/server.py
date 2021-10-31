@@ -23,18 +23,18 @@ class View:
         import re
 
         # ip = socket.gethostbyname(socket.gethostname())
-        ip = '192.168.219.104'
+        ip = '192.168.43.130'
         print("내부 ip : ",ip)
         req = requests.get("http://ipconfig.kr")
 
-        print("외부 IP : ", re.search(r'IP Address : (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', req.text)[1])
-        outip = re.search(r'IP Address : (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', req.text)[1]
+        # print("외부 IP : ", re.search(r'IP Address : (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', req.text)[1])
+        # outip = re.search(r'IP Address : (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', req.text)[1]
 
         page = 'server'
         context = {
             'page': page,
             'ip' : ip,
-            'outip' : outip,
+            # 'outip' : outip,
         }
 
         if hw == "master" and dl == "page":
@@ -96,7 +96,7 @@ class View:
     
     #Turtlebot Camera URL
     def imageAPI_Client(request, model):
-        socket = ServerSocket('192.168.219.104', 9090)
+        socket = ServerSocket('192.168.43.130', 9090)
         if request.method == 'POST':
             print(" POST METHOD ")
         else :

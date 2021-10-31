@@ -3,14 +3,15 @@ import os
 import numpy as np
 
 def ssdNet(image) :
+    print("Turtlebot IMAGE")
     CONF_VALUE = 0.8 # 20% 인정
     CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
                "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
                "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
                "sofa", "train", "tvmonitor"]
     COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
-    net = cv2.dnn.readNetFromCaffe(os.getcwd()+"\WEB\\"+"view\WebCamera\models\MobileNetSSD_deploy.prototxt.txt",
-                                   os.getcwd()+"\WEB\\"+"view\WebCamera\models\MobileNetSSD_deploy.caffemodel")
+    net = cv2.dnn.readNetFromCaffe(os.getcwd()+"\WEB\\"+"view\\"+"TurtlebotCamera\models\MobileNetSSD_deploy.prototxt.txt",
+                                   os.getcwd()+"\WEB\\"+"view\\"+"TurtlebotCamera\models\MobileNetSSD_deploy.caffemodel")
     # print(type(image), image)
     (h, w) = image.shape[:2]
 
