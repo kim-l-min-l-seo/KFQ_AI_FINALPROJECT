@@ -22,15 +22,16 @@ from .view.server import View
 
 urlpatterns = [
     
-    # path('webCame/',                  View.webCam,         name='Ver1_dashboard'),
-    # path('ssdNet/',                   Camera.ssdNet,         name='Ver1_dashboard'),
-    # path('gesture-recognition/',      Camera.gesture_recognition,         name='Ver1_dashboard'),
-
+    # PAGE URL
     path('monitoring/<hw>/<dl>/',      View.server,         name='Ver1_dashboard'),
+    
+    # Web Camera URL
     path('WebCamera/<model>/',         View.webCamera,     name='Ver1_dashboard'),
+    
+    # Turtlebot Camera URL
     path('TurtlebotCamera/<model>/',    View.imageAPI_Client, name='Ver1_dashboard'),
-    # path('DeepLearning/<model>/',      View.deeplearning, name='Ver1_dashboard'),
 
+    # CSS, JS
     path('dashboard/index=<num>',      Ver1.dashboard,                 name='Ver1_dashboard'),
     path('apps/<app>/<email>',         Ver1.apps,         name='Ver1_dashboard'),
     path('charts/<chart>',             Ver1.chart,         name='Ver1_dashboard'),

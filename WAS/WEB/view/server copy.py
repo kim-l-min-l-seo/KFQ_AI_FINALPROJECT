@@ -15,6 +15,7 @@ from .imageAPI_client import ServerSocket
 # Local Camera
 cam = VideoCamera()
 ip = '192.168.219.100'
+print("server.py")
 socket = ServerSocket(ip, 9090)
 # server = ServerSocket('192.168.219.104', 9090)
 class View:
@@ -25,9 +26,13 @@ class View:
         import requests
         import re
 
+        # ip = socket.gethostbyname(socket.gethostname())
+        # ip = '192.168.43.130'
         print("내부 ip : ",ip)
         req = requests.get("http://ipconfig.kr")
 
+        # print("외부 IP : ", re.search(r'IP Address : (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', req.text)[1])
+        # outip = re.search(r'IP Address : (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', req.text)[1]
 
         page = 'server'
         context = {
@@ -71,6 +76,17 @@ class View:
         elif hw == "Turtlebot" and dl == "FireDetection":
             return render(request, './0_SERVER/Turtlebot/FireDetection.html', context)
 
+
+    # def webCam(request):
+    #     global cam
+    #     try:
+    #         video = StreamingHttpResponse(
+    #             gen(cam, "webcam"), content_type="multipart/x-mixed-replace;boundary=frame")
+    #         return video
+    #     except:  # This is bad! replace it with proper handling
+    #         print("Exception Error. webCam")
+    #         pass
+
     def webCamera(request, model):
         print('model :', model)
         global cam
@@ -105,13 +121,10 @@ def frame_turtlebot(model, socket):
     print("Turtlebot model : ", model)
         
     while True:
-        try :
-            frame = socket.receiveImages(model)
-            yield(b'--frame\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-        except Exception as e :
-            # print("frame_turtlebot exception >>",e)
-            pass
+        frame = socket.receiveImages(model)
+        yield(b'--frame\r\n'
+              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
 # Local Camera Frame
 def frame_webCamera(camera,mod):
     print('gen() -mod :',mod)

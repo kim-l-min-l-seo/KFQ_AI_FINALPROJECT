@@ -3,7 +3,6 @@ import os
 import numpy as np
 
 def ssdNet(image) :
-    print("Turtlebot IMAGE")
     CONF_VALUE = 0.8 # 20% 인정
     CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
                "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
