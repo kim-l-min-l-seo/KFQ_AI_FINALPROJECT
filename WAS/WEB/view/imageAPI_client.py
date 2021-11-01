@@ -43,6 +43,7 @@ class ServerSocket:
         print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is close')
         self.sock = None
         gsock = None
+
     def socketOpen(self):
         global gsock
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -62,31 +63,34 @@ class ServerSocket:
             while True:
                 length = self.recvall(self.conn, 64)
                 length1 = length.decode('utf-8')
-
-                # invalid literal for int() with base 10 exception
-                # length1 = float(length1)
-                length1 = int(length1)
-
                 stringData = self.recvall(self.conn, int(length1))
                 data = numpy.frombuffer(base64.b64decode(stringData), numpy.uint8)
-                # print("stringData : ", len(data))
+
+                # 실수로 지웠던 image Decode 복구 : 저 과정을 거쳐야 원본파일로 복구되는듯
+                # jpg > imincode 송신 >>> 수신 > imdecode > jpg
+                # decode가 없으면 1차원배열로 떨어짐 - DL적용 불가
+
+                frame = cv2.imdecode(data, 1)
+                # cv2.imshow("image", frame)
                 
                 try:
                     if model == "webcam":
-                        data = ssdNet(data)
+                        pass
                     elif model == "ObjectDetection":
-                        data = ssdNet(data)
+                        frame = ssdNet(frame)
                     elif model == "gesture-recognition":
                         image = Gesture_recognition()
-                        image = image.gesture_recognition(data)
+                        frame = image.gesture_recognition(frame)
                     elif model == "MaskDetection":
-                        data = maskDetection(data)
+                        frame = maskDetection(frame)
                     else:
                         pass
                 except Exception as e:
-                    logging.info("exception >>>", e)
-                
-                return data.tobytes()
+                    print("exception >>>", e)
+                    pass
+
+                _, jpeg = cv2.imencode('.jpg', frame)
+                return jpeg.tobytes()
         except Exception as e:
             # logging.warning("exception >>>>",e)
             if gsock == None:
@@ -106,9 +110,3 @@ class ServerSocket:
             buf += newbuf
             count -= len(newbuf)
         return buf
-
-# def main():
-#     server = ServerSocket('192.168.0.212', 9090)
-
-# if __name__ == "__main__":
-#     main()

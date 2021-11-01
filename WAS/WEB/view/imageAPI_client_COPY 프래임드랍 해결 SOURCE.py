@@ -24,8 +24,10 @@ from .TurtlebotCamera.MaskDetection import maskDetection
 
 stringData = None
 gsock = None
+
+
 class ServerSocket:
-    
+
     def __init__(self, ip, port):
         global gsock
         self.TCP_IP = ip
@@ -33,16 +35,18 @@ class ServerSocket:
         if gsock == None:
             self.socketOpen()
         else:
-            print("gsock is not None : ",gsock)
+            print("gsock is not None : ", gsock)
         self.receiveThread = threading.Thread(target=self.receiveImages)
         self.receiveThread.start()
 
     def socketClose(self):
         global gsock
         self.sock.close()
-        print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is close')
+        print(u'Server socket [ TCP_IP: ' + self.TCP_IP +
+              ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is close')
         self.sock = None
         gsock = None
+
     def socketOpen(self):
         global gsock
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -50,12 +54,14 @@ class ServerSocket:
         # self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
         self.sock.bind((self.TCP_IP, self.TCP_PORT))
         self.sock.listen(0)
-        print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is open')
-        if gsock == None :
+        print(u'Server socket [ TCP_IP: ' + self.TCP_IP +
+              ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is open')
+        if gsock == None:
             print("gsock is None")
         self.conn, self.addr = self.sock.accept()
-        print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' + str(self.TCP_PORT) + ' ] is connected with client')
-    
+        print(u'Server socket [ TCP_IP: ' + self.TCP_IP + ', TCP_PORT: ' +
+              str(self.TCP_PORT) + ' ] is connected with client')
+
     def receiveImages(self, model):
         global stringData
         try:
@@ -68,12 +74,13 @@ class ServerSocket:
                 length1 = int(length1)
 
                 stringData = self.recvall(self.conn, int(length1))
-                data = numpy.frombuffer(base64.b64decode(stringData), numpy.uint8)
+                data = numpy.frombuffer(
+                    base64.b64decode(stringData), numpy.uint8)
                 # print("stringData : ", len(data))
-                
+
                 try:
                     if model == "webcam":
-                        data = ssdNet(data)
+                        pass
                     elif model == "ObjectDetection":
                         data = ssdNet(data)
                     elif model == "gesture-recognition":
@@ -85,14 +92,15 @@ class ServerSocket:
                         pass
                 except Exception as e:
                     logging.info("exception >>>", e)
-                
+
                 return data.tobytes()
         except Exception as e:
             # logging.warning("exception >>>>",e)
             if gsock == None:
                 self.socketClose()
                 self.socketOpen()
-                self.receiveThread = threading.Thread(target=self.receiveImages)
+                self.receiveThread = threading.Thread(
+                    target=self.receiveImages)
                 self.receiveThread.start()
             else:
                 logging.info("gsock is not None : ", gsock)
@@ -102,7 +110,8 @@ class ServerSocket:
         buf = b''
         while count:
             newbuf = sock.recv(count)
-            if not newbuf: return None
+            if not newbuf:
+                return None
             buf += newbuf
             count -= len(newbuf)
         return buf

@@ -19,6 +19,8 @@ class VideoCamera(object):
     def get_frame(self, mod):
         image = None
         if mod == "webcam":
+            print("self.frame : ", type(self.frame))
+            print("self.frame : ", self.frame.shape)
             image = self.frame
         elif mod == "ObjectDetection":
             image = ssdNet(self.frame)
