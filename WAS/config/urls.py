@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('theme/', include('Theme.urls')),
     path('web/', include('WEB.urls')),
+    path('yolov5/',include('yolov5.urls')),
     # path('', views.theme),
     path('', webViews.start),
 
