@@ -1,10 +1,5 @@
-# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
-"""
-Run inference on images, videos, directories, streams, etc.
-
-Usage:
-    $ python path/to/detect.py --source path/to/img.jpg --weights yolov5s.pt --img 640
-"""
+from django.http import StreamingHttpResponse
+from django.http.response import HttpResponse
 
 import argparse
 import os
@@ -224,10 +219,20 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             print(f'{s}Done. ({t3 - t2:.3f}s)')
 
             # Stream results
-            im0 = annotator.result()
-            if view_img:
-                cv2.imshow(str(p), im0)
-                cv2.waitKey(1)  # 1 millisecond
+            try:
+                im0 = annotator.result()
+                video = cv2.imencode('.jpg', im0)[1].tobytes()
+                yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + video + b'\r\n')
+                    # return video
+            except:
+                print("Exception Error")
+                pass
+            
+            # im0 = annotator.result()
+            # if view_img:
+            #     cv2.imshow(str(p), im0)
+            #     cv2.waitKey(1)  # 1 millisecond
 
 
     # Print results

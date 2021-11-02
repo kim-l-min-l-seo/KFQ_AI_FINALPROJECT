@@ -24,7 +24,7 @@
     <!--**********************************
         Main wrapper start
     ***********************************-->
-    <div id="main-wrapper">
+    {% comment %} <div id="main-wrapper">
 
         {% include "include/header.html" %}
 
@@ -33,18 +33,18 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+        <div class="content-body"> {% endcomment %}
             
             {% include "0_SERVER/3_turtlebot/1_title.html" %}
             <div class="container-fluid">
                 {% include "0_SERVER/3_turtlebot/2_statusValue.html" %}
 
             </div>
-        </div>
+        {% comment %} </div> {% endcomment %}
 
-        {% include "include/footer.html" %}
+        {% comment %} {% include "include/footer.html" %} {% endcomment %}
 
-    </div>
+    {% comment %} </div> {% endcomment %}
     <!--**********************************
         Main wrapper end
     ***********************************-->

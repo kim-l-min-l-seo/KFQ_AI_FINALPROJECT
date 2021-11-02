@@ -3,26 +3,45 @@
 
 <div class="row">
 
-    <!-- 카메라 -->
+    <!-- 마스크 -->
     <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
-        <div class="card h-100">
+        <div class="card text-center">
             <div class="card-body">
-                여기다가 카메라 달고 싶습니다
+                <img src="http://{{ip}}:8000/web/WebCamera/webcam/"  style="width:100%; height:100%" />
+            </div>
+            <div class="stat-widget-one card-body">
+                <div class="stat-content d-inline-block">
+                    마스크 쓰센 ㅋㅋ
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 불 -->
+    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+        <div class="card text-center">
+            <div class="card-body">
+                <img src="http://{{ip}}:8000/web/WebCamera/webcam/"  style="width:100%; height:100%" />
+            </div>
+            <div class="stat-widget-one card-body">
+                <div class="stat-content d-inline-block">
+                    불이야! 불이야!
+                </div>
             </div>
         </div>
     </div>
 
     <!-- 지도 -->
     <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
-        <div class="card h-100">
+        <div class="card text-center">
             <div class="card-body">
-                <div id="map" style='height: 100%; width: 100%; margin: -10px'></div>
+                <div id="map" style='height: 100%; width: 100%;'></div>
             </div>
         </div>
     </div>
 
     <!-- 컨트롤러 -->
-    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+    <div class="col-xl-2 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card h-100">
             <div class="stat-widget-one card-body">
                 <div class="stat-icon d-inline-block">
@@ -40,34 +59,9 @@
             </div>
         </div>
     </div>
-
-</div>
-<div class="row">
     
-    <!-- 인공지능 관련 메세지 -->
-    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
-        <div class="card h-100">
-            <div class="stat-widget-one card-body">
-                <div class="stat-content d-inline-block">
-                    여기다가 인공지능 결과 관련 메세지를?
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 자율주행 관련 메세지 -->
-    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
-        <div class="card h-100">
-            <div class="stat-widget-one card-body">
-                <div class="stat-content d-inline-block">
-                    <div id="nav_status"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- 속도 관련 메세지 -->
-    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+    <div class="col-xl-2 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card h-100">
             <div class="stat-widget-one card-body">
                 <div class="stat-icon d-inline-block">
@@ -81,12 +75,21 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
+    <!-- 자율주행 관련 메세지 -->
+    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+        <div class="card h-100">
+            <div class="stat-widget-one card-body">
+                <div class="stat-content d-inline-block">
+                    <div id="nav_status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 센서데이터 관련 메세지 -->
-    <div class="col-xl-12 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
-        <div class="card">
+    <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
+        <div class="card h-100">
             <div class="stat-widget-one card-body">
                 <div class="stat-content d-inline-block">
                     <div id="imu_orientation_w"></div>

@@ -60,8 +60,8 @@ function init() {
   // Create the main viewer.
   var viewer = new ROS2D.Viewer({
     divID : 'map',
-    width : 480,
-    height : 480
+    width : 516,
+    height : 516
   });
 
   var nav = NAV2D.OccupancyGridClientNav({
