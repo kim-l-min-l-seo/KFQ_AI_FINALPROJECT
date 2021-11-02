@@ -15,7 +15,6 @@ def maskDetection(image):
     # cap = cv2.VideoCapture(0)
     # ret, img = cap.read()
 
-    fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
     # out = cv2.VideoWriter('output.mp4', fourcc, image.get(cv2.CAP_PROP_FPS), (image.shape[1], image.shape[0]))
 
     while(True):

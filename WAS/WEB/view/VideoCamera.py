@@ -5,6 +5,7 @@ import threading
 from .WebCamera.ssdNet import ssdNet
 from .WebCamera.gesture_recognition import Gesture_recognition
 from .WebCamera.MaskDetection import maskDetection
+from .WebCamera.fireDetection2 import deepfire_CV
 
 class VideoCamera(object):
     def __init__(self):
@@ -19,8 +20,8 @@ class VideoCamera(object):
     def get_frame(self, mod):
         image = None
         if mod == "webcam":
-            print("self.frame : ", type(self.frame))
-            print("self.frame : ", self.frame.shape)
+            # print("self.frame : ", type(self.frame))
+            # print("self.frame : ", self.frame.shape)
             image = self.frame
         elif mod == "ObjectDetection":
             image = ssdNet(self.frame)
@@ -29,6 +30,8 @@ class VideoCamera(object):
             image = image.gesture_recognition(self.frame)
         elif mod == "MaskDetection":
             image = maskDetection(self.frame)
+        elif mod == "FireDetection":
+            image = deepfire_CV(self.frame)
 
         _, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()

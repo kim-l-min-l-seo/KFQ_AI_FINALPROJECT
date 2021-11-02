@@ -72,6 +72,8 @@ class ServerSocket:
 
                 frame = cv2.imdecode(data, 1)
                 # cv2.imshow("image", frame)
+                # print("frame.shape",frame.shape)
+                # print("type of frame",type(frame))
                 
                 try:
                     if model == "webcam":

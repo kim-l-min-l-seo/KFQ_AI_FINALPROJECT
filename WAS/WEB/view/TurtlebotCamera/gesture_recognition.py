@@ -93,7 +93,7 @@ class Gesture_recognition:
                     if self.action_seq[-1] == self.action_seq[-2] == self.action_seq[-3]:
                         this_action = action
 
-                    print("action : ", action)
+                    # print("action : ", action)
                     # if action == "up":
                     #     print(" 위 ")
                     #     data = {
