@@ -55,7 +55,20 @@ def video_feed(request):
             logging.info(" POST METHOD ")
     else :
         try :
-            frame = FireDetection.run(source='http://192.168.0.29:8000/web/WebCamera/webcam')
+            frame = FireDetection.run(source='http://192.168.43.107:8000/web/TurtlebotCamera/webcam/')
+            """Video streaming route. Put this in the src attribute of an img tag."""
+            return StreamingHttpResponse(frame,
+                content_type='multipart/x-mixed-replace; boundary=frame')
+        except :  # This is bad! replace it with proper handling
+            print("Exception Error. imageAPI_Client")
+            pass
+
+def fire_detection(request):
+    if request.method == 'POST':
+            logging.info(" POST METHOD ")
+    else :
+        try :
+            frame = FireDetection.run(source='http://192.168.43.107:8000/web/TurtlebotCamera/webcam/',weights='yolov5/fire_detection.pt')
             """Video streaming route. Put this in the src attribute of an img tag."""
             return StreamingHttpResponse(frame,
                 content_type='multipart/x-mixed-replace; boundary=frame')

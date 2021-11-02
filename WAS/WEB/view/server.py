@@ -43,7 +43,7 @@ logger.setLevel(level=logging.INFO)
 
 # Local Camera
 cam = VideoCamera()
-ip = '192.168.0.150'
+ip = '192.168.43.107'
 socket = ServerSocket(ip, 9090)
 
 class View:
@@ -147,7 +147,10 @@ def frame_webCamera(camera,mod):
     logging.info('gen() -mod :', mod)
     while True:
         # frame = video.read()
-        frame = camera.get_frame(mod)
+        try:
+            frame = camera.get_frame(mod)
+        except:
+            pass
         # if mod == "webcam":
             # print("mod  :",mod,"   FRAME type : ",type(frame))
         yield(b'--frame\r\n'
