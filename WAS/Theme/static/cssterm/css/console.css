@@ -1,0 +1,46 @@
+.container-fluid {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container-box {
+    margin-bottom: 25px;
+}
+
+.row {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-right: 10px;
+}
+
+.card-height {
+    height: 810px;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    width: 30rem;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem; }
+#terminal-window {
+    position: absolute;
+    top: 170px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 30rem;
+    width: 90%;
+    height: 500px;
+    overflow: scroll;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}

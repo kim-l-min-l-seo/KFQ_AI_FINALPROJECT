@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "include/head.html" %}
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        {% include "include/header.html" %}
+        {% include "include/sidebar.html" %}
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+
+                {% include "0_SERVER/3_turtlebot/1_title.html" %}
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8" id="">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">gesture-recognition</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <img src="http://{{ip}}:8000/web/WebCamera/gesture-recognition/"  style="width:100%; height:100%" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-4" id="">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Deep learning based hand gesture recognition using LSTM and MediaPipie.</h4>
+                            </div>
+                            <div class="card-body">
+                                <p>Dependency:</p>
+                                <p>- Python 3</p>
+                                <p>- TensorFlow 2.4</p>
+                                <p>- sklearn</p>
+                                <p>- numpy</p>
+                                <p>- OpenCV</p>
+                                <p>- MediaPipe</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include "include/footer.html" %}
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    {% comment %} {% include "include/script.html" %} {% endcomment %}
+<script src="{% static 'ver1/vendor/global/global.min.js' %}"></script>
+<script src="{% static 'ver1/js/quixnav-init.js' %}"></script>
+<script src="{% static 'ver1/vendor/quixnav/quixnav.min.js' %}"></script>
+<script src="{% static 'ver1/js/custom.min.js' %}"></script>
+</body>
+
+</html>
