@@ -4,6 +4,10 @@
 
 roscore
 
+**ros socket 실행**
+
+roslaunch rosbridge_server rosbridge_websocket.launch
+
 **Navigation 실행**
 
 roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml
