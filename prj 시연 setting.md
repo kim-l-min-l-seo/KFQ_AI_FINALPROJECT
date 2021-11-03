@@ -95,7 +95,7 @@ export ROS_MASTER_URI=http://{{프록시의 ip}}:11311
 
 **ros socket 실행**
 
-`roslaunch rosbridge_server rosbridge_websocket.launch`
+`roslaunch rosbridge_server rosbridge_websocket.launch address:={프록시의 ip}`
 
 **robot pose publisher (좌표 변환기) 실행**
 
