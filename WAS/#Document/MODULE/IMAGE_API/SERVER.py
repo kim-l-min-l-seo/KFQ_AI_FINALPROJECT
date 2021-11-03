@@ -64,7 +64,7 @@ class ClientSocket:
             self.sendImages()
 
 def main():
-    TCP_IP = '172.30.57.226'
+    TCP_IP = '192.168.43.107'
     TCP_PORT = 9090
     client = ClientSocket(TCP_IP, TCP_PORT)
 

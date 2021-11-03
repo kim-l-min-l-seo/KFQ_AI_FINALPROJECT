@@ -62,7 +62,7 @@ class ServerSocket:
         return buf
 
 def main():
-    server = ServerSocket('192.168.0.150', 9090)
+    server = ServerSocket('192.168.43.107', 9090)
 
 if __name__ == "__main__":
     main()

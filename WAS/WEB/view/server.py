@@ -147,7 +147,10 @@ def frame_webCamera(camera,mod):
     logging.info('gen() -mod :', mod)
     while True:
         # frame = video.read()
-        frame = camera.get_frame(mod)
+        try:
+            frame = camera.get_frame(mod)
+        except:
+            pass
         # if mod == "webcam":
             # print("mod  :",mod,"   FRAME type : ",type(frame))
         yield(b'--frame\r\n'
