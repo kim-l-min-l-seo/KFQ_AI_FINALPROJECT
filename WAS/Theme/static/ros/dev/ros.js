@@ -29,8 +29,8 @@ function init() {
   });
 
   // Create a connection to the rosbridge WebSocket server.
-  ros.connect('ws://192.168.0.41:9090');
-  // ros.connect('ws://localhost:9090');
+  // ros.connect('ws://192.168.0.41:9090');
+  ros.connect('ws://localhost:9090');
 
   cmd_vel_listener = new ROSLIB.Topic({
     ros : ros,
