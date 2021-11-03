@@ -43,7 +43,23 @@ logger.setLevel(level=logging.WARNING)
 # Local Camera
 cam = VideoCamera()
 
-ip = '192.168.219.100'
+# Get ip from ipconfig *
+import subprocess,re
+p = re.compile('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
+cmd = 'ipconfig'
+result = subprocess.Popen(cmd,universal_newlines=True,stdout=subprocess.PIPE)
+cmd_result = result.stdout.read()
+
+ip_list = []
+for i in cmd_result.split('\n\n'):
+    result = p.search(i)
+    if result is None:
+        continue
+    else:
+        ip_list.append(result.group())
+
+print(ip_list[0],ip_list[1])
+ip = ip_list[1]
 # socket = ServerSocket(ip, 9090)
 
 class View:

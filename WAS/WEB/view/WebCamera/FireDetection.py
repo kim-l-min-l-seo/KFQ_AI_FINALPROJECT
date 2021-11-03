@@ -1,7 +1,6 @@
 import cv2
 import os
 def deepfire_CV(frame):
-    # H:\Default\Workspace\GIT\KFQ\KFQ_FinalProject\WAS\WEB\view\WebCamera\models\fire_detection.xml
     fire_cascade = cv2.CascadeClassifier(os.getcwd()+"\WEB\\"+"view\WebCamera\models\\"+"fire_detection.xml")
 
     # cap = cv2.VideoCapture(0)
@@ -17,11 +16,5 @@ def deepfire_CV(frame):
             # roi_color = frame[y:y + h, x:x + w]
             print("불 감지")
 
-        # cv2.imshow('fire', frame)
-        # key = cv2.waitKey(20)
-        # if key == 27:  # esc 키
-        #     break
-        # if key == ord('c') or key == ord('C'):
-        #     cv2.imshow('fire', frame)
-    
+
         return frame
