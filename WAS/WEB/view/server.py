@@ -43,18 +43,8 @@ logger.setLevel(level=logging.WARNING)
 # Local Camera
 cam = VideoCamera()
 
-# 사용중인 IP
-import socket
-import subprocess
-import sys
-# ipconfig = subprocess.check_output("ipconfig")
-# print(ipconfig)
-ip = '192.168.219.100'
-print(socket.gethostbyname(socket.gethostname()))
-print(socket.gethostbyname(socket.getfqdn()))
-print("Host Name ",socket.gethostname())
-print("IP Address(Internal) : ",socket.gethostbyname(socket.gethostname()))
-# socket = ServerSocket(ip, 9090)
+ip = '192.168.0.25'
+socket = ServerSocket(ip, 9090)
 
 class View:
     # url mapping

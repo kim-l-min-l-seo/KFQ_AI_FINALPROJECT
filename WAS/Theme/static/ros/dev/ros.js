@@ -29,6 +29,7 @@ function init() {
   });
 
   // Create a connection to the rosbridge WebSocket server.
+  // ros.connect('ws://192.168.0.41:9090');
   ros.connect('ws://localhost:9090');
 
   cmd_vel_listener = new ROSLIB.Topic({
@@ -130,17 +131,17 @@ function init() {
     imu_linear_acceleration_z.innerText = 'z: '+imu.linear_acceleration.z;
   });
 
-  // // battery state
-  // var battery_state_listener = new ROSLIB.Topic({
-  //   ros : ros,
-  //   name : '/battery_idk',
-  //   messageType : 'sensor_msgs/BatteryState Message'
-  // });
-  // // Then we add a callback to be called every time a message is published on this topic.
-  // battery_state_listener.subscribe(function(battery) {
-  //   console.log(battery.perentage);
-  //   // console.log(status);
-  // });
+  // battery state
+  var battery_state_listener = new ROSLIB.Topic({
+    ros : ros,
+    name : '/battery_idk',
+    messageType : 'sensor_msgs/BatteryState'
+  });
+  // Then we add a callback to be called every time a message is published on this topic.
+  battery_state_listener.subscribe(function(battery) {
+    var battery_percentage = document.getElementById('battery_percentage');
+    battery_percentage.innerText = battery.percentage;
+  });
 
   // cmd_vel
   var nav_status = new ROSLIB.Topic({
