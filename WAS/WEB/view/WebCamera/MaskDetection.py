@@ -1,3 +1,5 @@
+import tensorflow as tf
+tf.debugging.set_log_device_placement(False)
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.models import load_model
 import numpy as np
@@ -18,19 +20,14 @@ def maskDetection(image):
     # fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
     # out = cv2.VideoWriter('output.mp4', fourcc, image.get(cv2.CAP_PROP_FPS), (image.shape[1], image.shape[0]))
 
+    h, w = image.shape[:2]
+
+    blob = cv2.dnn.blobFromImage(
+        image, scalefactor=1., size=(300, 300), mean=(104., 177., 123.))
+    facenet.setInput(blob)
+    dets = facenet.forward()
+    print("dddddddddddddddddddddddddddd ",dets.shape[2])
     while(True):
-        # ret, img = cap.read()
-        # if not ret:
-            # break
-
-        h, w = image.shape[:2]
-
-        blob = cv2.dnn.blobFromImage(
-            image, scalefactor=1., size=(300, 300), mean=(104., 177., 123.))
-        facenet.setInput(blob)
-        dets = facenet.forward()
-
-        # result_img = image.copy()
 
         for i in range(dets.shape[2]):
             confidence = dets[0, 0, i, 2]
@@ -49,7 +46,8 @@ def maskDetection(image):
                 face_input = preprocess_input(face_input)
                 face_input = np.expand_dims(face_input, axis=0)
             except Exception as e:
-                print(str(e))
+                # print(str(e))
+                pass
             mask, nomask = model.predict(face_input).squeeze()
 
             if mask > nomask:
@@ -63,12 +61,6 @@ def maskDetection(image):
                         thickness=2, color=color, lineType=cv2.LINE_AA)
             cv2.putText(image, text=label, org=(x1, y1 - 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                         fontScale=0.8, color=color, thickness=2, lineType=cv2.LINE_AA)
-            # print(x1, y1, x2, y2)
-        return image
-        # out.write(image)
-        # cv2.imshow('result', image)
-        # if cv2.waitKey(1) == ord('q'):
-            # break
 
-    # out.release()
-    # cap.release()
+        return image
+

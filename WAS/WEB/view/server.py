@@ -19,7 +19,6 @@ from django.views.decorators.http import require_GET, require_POST
 
 import cv2
 import threading
-import socket
 import numpy as np
 
 from .VideoCamera import VideoCamera
@@ -39,12 +38,23 @@ logger.addHandler(streamHandler)
 logger.addHandler(fileHandler)
 
 # logger instance level 설정
-logger.setLevel(level=logging.INFO)
+logger.setLevel(level=logging.WARNING)
 
 # Local Camera
 cam = VideoCamera()
-ip = '192.168.43.107'
-socket = ServerSocket(ip, 9090)
+
+# 사용중인 IP
+import socket
+import subprocess
+import sys
+# ipconfig = subprocess.check_output("ipconfig")
+# print(ipconfig)
+ip = '192.168.219.100'
+print(socket.gethostbyname(socket.gethostname()))
+print(socket.gethostbyname(socket.getfqdn()))
+print("Host Name ",socket.gethostname())
+print("IP Address(Internal) : ",socket.gethostbyname(socket.gethostname()))
+# socket = ServerSocket(ip, 9090)
 
 class View:
     # url mapping
@@ -102,13 +112,13 @@ class View:
 
     def webCamera(request, model):
         global cam
-        logging.info('model :', model)
+        print('model :', model)
         try:
             video = StreamingHttpResponse(
                 frame_webCamera(cam, model), content_type="multipart/x-mixed-replace;boundary=frame")
             return video
         except:  # This is bad! replace it with proper handling
-            logging.info("Exception Error. webCamera")
+            print("Exception Error. webCamera")
             pass
     
     #Turtlebot Camera URL
@@ -117,7 +127,7 @@ class View:
         # socket = ServerSocket('192.168.43.130', 9090)
         # socket = ServerSocket(ip, 9090)
         if request.method == 'POST':
-            logging.info(" POST METHOD ")
+            print(" POST METHOD ")
         else :
             try :
                 video = StreamingHttpResponse(
@@ -131,7 +141,7 @@ class View:
 def frame_turtlebot(model, socket):
     global count
     global server
-    logging.info("Turtlebot model : ", model)
+    # logging.info("Turtlebot model : ", model)
         
     while True:
         try :
@@ -144,13 +154,15 @@ def frame_turtlebot(model, socket):
 
 # Local Camera Frame
 def frame_webCamera(camera,mod):
-    logging.info('gen() -mod :', mod)
+    # logging.info('gen() -mod :', mod)
     while True:
         # frame = video.read()
         try:
             frame = camera.get_frame(mod)
-        except:
+        except Exception as e:
+            # print("frame_webCamera exception >>",e)
             pass
+            
         # if mod == "webcam":
             # print("mod  :",mod,"   FRAME type : ",type(frame))
         yield(b'--frame\r\n'
