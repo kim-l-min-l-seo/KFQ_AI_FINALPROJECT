@@ -43,41 +43,43 @@ logger.setLevel(level=logging.WARNING)
 # Local Camera
 cam = VideoCamera()
 
-# Get ip from ipconfig *
-import subprocess,re
-p = re.compile('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
-cmd = 'ipconfig'
-result = subprocess.Popen(cmd,universal_newlines=True,stdout=subprocess.PIPE)
-cmd_result = result.stdout.read()
+def ip():
+    # Get ip from ipconfig *
+    import subprocess,re
+    p = re.compile('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
+    cmd = 'ipconfig'
+    result = subprocess.Popen(cmd,universal_newlines=True,stdout=subprocess.PIPE)
+    cmd_result = result.stdout.read()
 
-ip_list = []
-for i in cmd_result.split('\n\n'):
-    result = p.search(i)
-    if result is None:
-        continue
-    else:
-        ip_list.append(result.group())
+    ip_list = []
+    for i in cmd_result.split('\n\n'):
+        result = p.search(i)
+        if result is None:
+            continue
+        else:
+            ip_list.append(result.group())
 
-print(ip_list[0],ip_list[1])
-ip = ip_list[1]
-# socket = ServerSocket(ip, 9090)
+    print(ip_list[0],ip_list[1])
+    return ip_list[1]
+
+# Socket 통신 접속
+# socket = ServerSocket(ip(), 9090)
 
 class View:
     # url mapping
     def server(request, hw, dl):
-        global ip
         logging.info("hw :", hw, "  dl:", dl)
         import requests
         import re
 
-        logging.info("내부 ip : ", ip)
+        logging.info("내부 ip : ", ip())
         req = requests.get("http://ipconfig.kr")
 
 
         page = 'server'
         context = {
             'page': page,
-            'ip' : ip,
+            'ip' : ip(),
             # 'outip' : outip,
         }
 
@@ -129,7 +131,7 @@ class View:
     
     #Turtlebot Camera URL
     def imageAPI_Client(request, model):
-        global ip, socket
+        global socket
         # socket = ServerSocket('192.168.43.130', 9090)
         # socket = ServerSocket(ip, 9090)
         if request.method == 'POST':
