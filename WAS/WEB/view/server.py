@@ -43,8 +43,8 @@ logger.setLevel(level=logging.WARNING)
 # Local Camera
 cam = VideoCamera()
 
-ip = '192.168.0.25'
-socket = ServerSocket(ip, 9090)
+ip = '192.168.219.100'
+# socket = ServerSocket(ip, 9090)
 
 class View:
     # url mapping

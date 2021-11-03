@@ -5,7 +5,7 @@ import threading
 from .WebCamera.ssdNet import ssdNet
 from .WebCamera.gesture_recognition import Gesture_recognition
 from .WebCamera.MaskDetection import maskDetection
-from .WebCamera.fireDetection2 import deepfire_CV
+from .WebCamera.FireDetection import deepfire_CV
 
 class VideoCamera(object):
     def __init__(self):
