@@ -46,7 +46,7 @@ $(document).ready(function() {
 			</div> \
 		</div> \
 	</div> \
-	<div id="terminal-body"><p> \
+	<div id="terminal-body" style="overflow:auto; height:150px;"><p> \
 ';
 
 	// closes the html that has been inserted, ends the terminal display

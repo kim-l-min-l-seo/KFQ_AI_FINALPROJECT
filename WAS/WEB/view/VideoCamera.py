@@ -3,7 +3,7 @@ import threading
 
 #WebCamera Version Module import
 from .WebCamera.ssdNet import ssdNet
-from .WebCamera.gesture_recognition import Gesture_recognition
+from .WebCamera.gesture_recognition import gesture_recognition
 from .WebCamera.MaskDetection import maskDetection
 from .WebCamera.FireDetection import deepfire_CV
 
@@ -26,8 +26,7 @@ class VideoCamera(object):
         elif mod == "ObjectDetection":
             image = ssdNet(self.frame)
         elif mod == "gesture-recognition":
-            image = Gesture_recognition()
-            image = image.gesture_recognition(self.frame)
+            image = gesture_recognition(self.frame)
         elif mod == "MaskDetection":
             image = maskDetection(self.frame)
         elif mod == "FireDetection":

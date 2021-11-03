@@ -3,6 +3,7 @@
 <html lang="en">
 
 {% include "include/head.html" %}
+<link rel="stylesheet" type="text/css" href="{% static 'cssterm/css/cssterm.css' %}">
 
 <body>
 
@@ -70,8 +71,12 @@
                             </div>
                         </div>
                     </div>
-                 
                 </div>
+
+                <div class="cssterm">
+                    {{Exception_MESSAGE}}
+                </div>
+
             </div>
         </div>
 
@@ -87,6 +92,12 @@
 <script src="{% static 'ver1/js/quixnav-init.js' %}"></script>
 <script src="{% static 'ver1/vendor/quixnav/quixnav.min.js' %}"></script>
 <script src="{% static 'ver1/js/custom.min.js' %}"></script>
+
+<!-- detect browser for best performance in js-->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://jquery.thewikies.com/browser/jquery.browser.js"></script>
+<script src="http://code.jquery.com/jquery-1.3.2.min.js"></script>
+<script src="{% static 'cssterm/scripts/cssterm.js' %}"></script>
 </body>
 
 </html>

@@ -7,7 +7,6 @@ def deepfire_CV(frame):
 
     while (True):
         # ret, frame = cap.read()
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         fire = fire_cascade.detectMultiScale(frame, 1.2, 5)
 
         for (x, y, w, h) in fire:

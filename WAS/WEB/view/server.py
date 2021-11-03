@@ -65,9 +65,12 @@ def ip():
 # Socket 통신 접속
 # socket = ServerSocket(ip(), 9090)
 
+Exception_MESSAGE = ""
+
 class View:
     # url mapping
     def server(request, hw, dl):
+        global Exception_MESSAGE
         logging.info("hw :", hw, "  dl:", dl)
         import requests
         import re
@@ -78,6 +81,7 @@ class View:
 
         page = 'server'
         context = {
+            'Exception_MESSAGE':Exception_MESSAGE,
             'page': page,
             'ip' : ip(),
             # 'outip' : outip,
@@ -119,19 +123,20 @@ class View:
             return render(request, './0_SERVER/Turtlebot/FireDetection.html', context)
 
     def webCamera(request, model):
-        global cam
+        global cam, Exception_MESSAGE
         print('model :', model)
         try:
             video = StreamingHttpResponse(
                 frame_webCamera(cam, model), content_type="multipart/x-mixed-replace;boundary=frame")
             return video
-        except:  # This is bad! replace it with proper handling
+        except Exception as e:  # This is bad! replace it with proper handling
+            Exception_MESSAGE = e
             print("Exception Error. webCamera")
             pass
     
     #Turtlebot Camera URL
     def imageAPI_Client(request, model):
-        global socket
+        global socket, Exception_MESSAGE
         # socket = ServerSocket('192.168.43.130', 9090)
         # socket = ServerSocket(ip, 9090)
         if request.method == 'POST':
@@ -147,8 +152,7 @@ class View:
 
 # 터틀봇으로부터 이미지 수신
 def frame_turtlebot(model, socket):
-    global count
-    global server
+    global server, Exception_MESSAGE
     # logging.info("Turtlebot model : ", model)
         
     while True:
@@ -157,21 +161,29 @@ def frame_turtlebot(model, socket):
             yield(b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
         except Exception as e :
+            Exception_MESSAGE = e
             # print("frame_turtlebot exception >>",e)
             pass
 
 # Local Camera Frame
 def frame_webCamera(camera,mod):
+    global Exception_MESSAGE
     # logging.info('gen() -mod :', mod)
     while True:
         # frame = video.read()
         try:
             frame = camera.get_frame(mod)
+            Exception_MESSAGE = frame
         except Exception as e:
-            # print("frame_webCamera exception >>",e)
+            Exception_MESSAGE = e
+            print("frame_webCamera exception >>", Exception_MESSAGE)
             pass
             
         # if mod == "webcam":
             # print("mod  :",mod,"   FRAME type : ",type(frame))
         yield(b'--frame\r\n'
               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+def exception_message():
+    global Exception_MESSAGE
+    return Exception_MESSAGE

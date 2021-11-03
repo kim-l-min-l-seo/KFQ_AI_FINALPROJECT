@@ -18,6 +18,7 @@ from django.urls import path, include
 from . import views
 from .view.ver1 import Ver1
 from .view.server import View
+from .view import server
 # from .view.WebCamera import * 
 
 urlpatterns = [
@@ -29,7 +30,10 @@ urlpatterns = [
     path('WebCamera/<model>/',         View.webCamera,     name='Ver1_dashboard'),
     
     # Turtlebot Camera URL
-    path('TurtlebotCamera/<model>/',    View.imageAPI_Client, name='Ver1_dashboard'),
+    path('TurtlebotCamera/<model>/',   View.imageAPI_Client, name='Ver1_dashboard'),
+
+    # Exception Message
+    path('exception/',                 server.exception_message, name='Ver1_dashboard'),
 
     # CSS, JS
     path('dashboard/index=<num>',      Ver1.dashboard,                 name='Ver1_dashboard'),

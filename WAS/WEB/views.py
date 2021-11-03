@@ -11,6 +11,7 @@ def test(request):
 
 def start (request):
     print("Theme choice")
+    return render(request, './StartProject.html')
     return HttpResponse(
         "<h1>Theme Page</h1> <br>"
         "<a href=\"/theme/ver1/dashboard/index=1\">Var 1 Dashboard index = 1</a> <br>"

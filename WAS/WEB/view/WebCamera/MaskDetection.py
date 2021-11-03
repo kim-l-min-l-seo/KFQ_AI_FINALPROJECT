@@ -22,11 +22,10 @@ def maskDetection(image):
 
     h, w = image.shape[:2]
 
-    blob = cv2.dnn.blobFromImage(
-        image, scalefactor=1., size=(300, 300), mean=(104., 177., 123.))
+    blob = cv2.dnn.blobFromImage(image, scalefactor=1., size=(300, 300), mean=(104., 177., 123.))
     facenet.setInput(blob)
     dets = facenet.forward()
-    print("dddddddddddddddddddddddddddd ",dets.shape[2])
+    
     while(True):
 
         for i in range(dets.shape[2]):
@@ -57,10 +56,15 @@ def maskDetection(image):
                 color = (0, 0, 255)
                 label = 'No Mask %d%%' % (nomask * 100)
 
-            cv2.rectangle(image, pt1=(x1, y1), pt2=(x2, y2),
-                        thickness=2, color=color, lineType=cv2.LINE_AA)
-            cv2.putText(image, text=label, org=(x1, y1 - 10), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
-                        fontScale=0.8, color=color, thickness=2, lineType=cv2.LINE_AA)
+            cv2.rectangle(image, pt1=(x1, y1), 
+                        pt2=(x2, y2),thickness=2, 
+                        color=color, 
+                        lineType=cv2.LINE_AA)
+            cv2.putText(image, text=label, 
+                        org=(x1, y1 - 10), 
+                        fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                        fontScale=0.8, color=color, 
+                        thickness=2, lineType=cv2.LINE_AA)
 
         return image
 
