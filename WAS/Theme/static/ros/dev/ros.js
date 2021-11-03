@@ -29,8 +29,8 @@ function init() {
   });
 
   // Create a connection to the rosbridge WebSocket server.
-  // ros.connect('ws://192.168.0.41:9090');
-  ros.connect('ws://localhost:9090');
+  ros.connect('ws://192.168.0.41:9090');
+  // ros.connect('ws://localhost:9090');
 
   cmd_vel_listener = new ROSLIB.Topic({
     ros : ros,
@@ -134,7 +134,7 @@ function init() {
   // battery state
   var battery_state_listener = new ROSLIB.Topic({
     ros : ros,
-    name : '/battery_idk',
+    name : '/battery_state',
     messageType : 'sensor_msgs/BatteryState'
   });
   // Then we add a callback to be called every time a message is published on this topic.
