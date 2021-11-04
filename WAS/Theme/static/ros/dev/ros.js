@@ -29,8 +29,8 @@ function init() {
   });
 
   // Create a connection to the rosbridge WebSocket server.
-  // ros.connect('ws://192.168.0.41:9090');
-  ros.connect('ws://localhost:9090');
+  ros.connect('ws://192.168.0.41:9090');
+  // ros.connect('ws://localhost:9090');
 
   cmd_vel_listener = new ROSLIB.Topic({
     ros : ros,
@@ -94,7 +94,7 @@ function init() {
       vel_x_state.innerText = '후진';
     }
     else {
-      vel_x_state.innerText = '\u00A0';
+      vel_x_state.innerText = '전/후 모터 정지';
     }
 
     if (cmd_vel.angular.z > 0) {
@@ -104,7 +104,7 @@ function init() {
       vel_z_state.innerText = '우회전';
     }
     else {
-      vel_z_state.innerText = '\u00A0';
+      vel_z_state.innerText = '좌/우 모터 정지';
     }
   });
 
@@ -141,16 +141,33 @@ function init() {
   // battery state
   var battery_state_listener = new ROSLIB.Topic({
     ros : ros,
-    name : '/battery_state',
-    messageType : 'sensor_msgs/BatteryState'
+    name : '/diagnostics',
+    messageType : 'diagnostic_msgs/DiagnosticArray'
   });
   // Then we add a callback to be called every time a message is published on this topic.
   battery_state_listener.subscribe(function(battery) {
-    var battery_percentage = document.getElementById('battery_percentage');
-    battery_percentage.innerText = battery.percentage;
+    var hardware_id = document.getElementById('power_sys_id');
+    var message = document.getElementById('power_sys_msg');
+    var name = document.getElementById('power_sys_name');
+    hardware_id.innerText = '\u00A0\u00A0연결 : ' + battery.status[3].hardware_id;
+    message.innerText = '\u00A0\u00A0상태 : ' + battery.status[3].message;
+    name.innerText = battery.status[3].name;
   });
+  
+  // // battery state
+  // var battery_state_listener = new ROSLIB.Topic({
+  //   ros : ros,
+  //   name : '/battery_state',
+  //   messageType : 'sensor_msgs/BatteryState'
+  // });
+  // // Then we add a callback to be called every time a message is published on this topic.
+  // battery_state_listener.subscribe(function(battery) {
+  //   var battery_percentage = document.getElementById('battery_percentage');
+  //   battery_percentage.innerText = battery.percentage;
+  // });
 
   // nav status
+  
   var nav_status = new ROSLIB.Topic({
     ros : ros,
     name : '/move_base/status',

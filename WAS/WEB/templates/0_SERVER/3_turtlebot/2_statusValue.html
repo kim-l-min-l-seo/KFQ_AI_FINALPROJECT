@@ -7,12 +7,13 @@
     <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card text-center">
             <div class="card-body">
-                <img src="http://{{ip}}:8000/web/WebCamera/MaskDetection/"  style="width:100%; height:100%" />
+                <img src="http://192.168.0.247:8000/web/TurtlebotCamera/MaskDetection/"  style="width:100%; height:100%" />
                 <!-- <img src="http://{{ip}}:8000/web/WebCamera/webcam/"  style="width:100%; height:100%" /> -->
             </div>
             <div class="stat-widget-one card-body">
                 <div class="stat-content d-inline-block">
-                    마스크 쓰센 ㅋㅋ
+                    <!-- 마스크 쓰센 ㅋㅋ -->
+                    마스크 미착용자 감지 모델
                 </div>
             </div>
         </div>
@@ -22,11 +23,13 @@
     <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card text-center">
             <div class="card-body">
-                <img src="http://{{ip}}:8000/yolov5/fire_detection/"  style="width:100%; height:100%" />
+                <!-- <img src="http://{{ip}}:8000/yolov5/fire_detection/"  style="width:100%; height:100%" /> -->
+                <img src="http://192.168.0.247:8000/web/TurtlebotCamera/webcam/"  style="width:100%; height:100%" />
             </div>
             <div class="stat-widget-one card-body">
                 <div class="stat-content d-inline-block">
-                    불이야! 불이야!
+                    <!-- 불이야! 불이야! -->
+                    화재 감지 모델
                 </div>
             </div>
         </div>
@@ -46,6 +49,11 @@
     <!-- 컨트롤러 -->
     <div class="col-xl-2 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card h-100">
+            <div class="card-title text-center">
+                <br/>
+                <div>컨트롤러</div>
+                <br/>
+            </div>
             <div class="card-body">
                 {% include "0_SERVER/3_turtlebot/keyboard.html" %}
             </div>
@@ -60,8 +68,8 @@
                     <br/>
                     <div>계기판</div>
                     <br/>
-                    <div id="vel_linear_state">전/후 정지</div>
-                    <div id="vel_angular_state">좌/우 정지</div>
+                    <div id="vel_linear_state">전/후 모터 정지</div>
+                    <div id="vel_angular_state">좌/우 모터 정지</div>
                 </div>
             </div>
 

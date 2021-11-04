@@ -43,27 +43,30 @@ logger.setLevel(level=logging.WARNING)
 # Local Camera
 cam = VideoCamera()
 
-def ip():
-    # Get ip from ipconfig *
-    import subprocess,re
-    p = re.compile('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
-    cmd = 'ipconfig'
-    result = subprocess.Popen(cmd,universal_newlines=True,stdout=subprocess.PIPE)
-    cmd_result = result.stdout.read()
+ip = '192.168.0.247'
 
-    ip_list = []
-    for i in cmd_result.split('\n\n'):
-        result = p.search(i)
-        if result is None:
-            continue
-        else:
-            ip_list.append(result.group())
+# def ip():
+#     # Get ip from ipconfig *
+#     import subprocess,re
+#     p = re.compile('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
+#     cmd = 'ipconfig'
+#     result = subprocess.Popen(cmd,universal_newlines=True,stdout=subprocess.PIPE)
+#     cmd_result = result.stdout.read()
 
-    print(ip_list[0],ip_list[1])
-    return ip_list[1]
+#     ip_list = []
+#     for i in cmd_result.split('\n\n'):
+#         result = p.search(i)
+#         if result is None:
+#             continue
+#         else:
+#             ip_list.append(result.group())
+
+#     print(ip_list[0],ip_list[1])
+#     return ip_list[1]
 
 # Socket 통신 접속
 # socket = ServerSocket(ip(), 9090)
+socket = ServerSocket(ip, 9090)
 
 Exception_MESSAGE = ""
 
@@ -75,7 +78,8 @@ class View:
         import requests
         import re
 
-        logging.info("내부 ip : ", ip())
+        # logging.info("내부 ip : ", ip())
+        logging.info("내부 ip : ", ip)
         req = requests.get("http://ipconfig.kr")
 
 
@@ -83,7 +87,8 @@ class View:
         context = {
             'Exception_MESSAGE':Exception_MESSAGE,
             'page': page,
-            'ip' : ip(),
+            # 'ip' : ip(),
+            'ip' : ip,
             # 'outip' : outip,
         }
 
