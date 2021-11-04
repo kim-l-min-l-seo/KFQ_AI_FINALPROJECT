@@ -68,7 +68,7 @@ def fire_detection(request):
             logging.info(" POST METHOD ")
     else :
         try :
-            frame = FireDetection.run(source='http://192.168.0.150:8000/web/TurtlebotCamera/webcam/',weights='yolov5/fire_detection.pt')
+            frame = detect.run(source='http://192.168.43.107:8000/web/TurtlebotCamera/webcam/',weights='yolov5/fire_detection.pt')
             """Video streaming route. Put this in the src attribute of an img tag."""
             return StreamingHttpResponse(frame,
                 content_type='multipart/x-mixed-replace; boundary=frame')
