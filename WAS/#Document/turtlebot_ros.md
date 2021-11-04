@@ -6,7 +6,13 @@ roscore
 
 **ros socket 실행**
 
-roslaunch rosbridge_server rosbridge_websocket.launch
+roslaunch rosbridge_server rosbridge_websocket.launch address:=`여기다가 중계컴 ip입력`
+
+**robot pose publisher (좌표 변환기) 실행**
+
+`cw` 후 `source devel/setup.bash`
+
+rosrun robot_pose_publisher robot_pose_publisher
 
 **Navigation 실행**
 
@@ -14,11 +20,6 @@ roslaunch rosbridge_server rosbridge_websocket.launch
 
 roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml
 
-**robot pose publisher (좌표 변환기) 실행**
-
-`cw` 후 `source devel/setup.bash`
-
-rosrun robot_pose_publisher robot_pose_publisher
 
 
 
