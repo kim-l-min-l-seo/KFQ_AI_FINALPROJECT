@@ -1,10 +1,14 @@
+from django.contrib import messages
 import cv2
 import os
+import tkinter as tk
+from tkinter import *
+from tkinter import messagebox
+
+
 def deepfire_CV(frame):
     fire_cascade = cv2.CascadeClassifier(os.getcwd()+"\WEB\\"+"view\WebCamera\models\\"+"fire_detection.xml")
-
     # cap = cv2.VideoCapture(0)
-
     while (True):
         # ret, frame = cap.read()
         fire = fire_cascade.detectMultiScale(frame, 1.2, 5)
@@ -14,6 +18,9 @@ def deepfire_CV(frame):
             # roi_gray = gray[y:y + h, x:x + w]
             # roi_color = frame[y:y + h, x:x + w]
             print("불 감지")
-
-
+            try:
+                messagebox.showwarning("Warning!!","Fire Detection!!")
+            except:
+                pass
         return frame
+    

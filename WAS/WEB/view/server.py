@@ -43,7 +43,7 @@ logger.setLevel(level=logging.WARNING)
 # Local Camera
 cam = VideoCamera()
 
-ip = '192.168.0.150'
+ip = '192.168.219.100'
 
 # def ip():
 #     # Get ip from ipconfig *
@@ -72,14 +72,14 @@ ip = '192.168.0.150'
 
 # Socket 통신 접속
 # socket = ServerSocket(ip(), 9090)
-# socket = ServerSocket(ip, 9090)
+socket = ServerSocket(ip, 9090)
 
 Exception_MESSAGE = ""
-
+message = ""
 class View:
     # url mapping
     def server(request, hw, dl):
-        global Exception_MESSAGE,ip
+        global Exception_MESSAGE, ip, message
         logging.info("hw :", hw, "  dl:", dl)
         import requests
         import re
@@ -96,6 +96,7 @@ class View:
             # 'ip' : ip(),
             'ip' : ip,
             # 'outip' : outip,
+            'message': message,
         }
 
         if hw == "master" and dl == "page":

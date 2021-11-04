@@ -21,6 +21,7 @@ import logging
 from .TurtlebotCamera.ssdNet import ssdNet
 from .TurtlebotCamera.gesture_recognition import Gesture_recognition
 from .TurtlebotCamera.MaskDetection import maskDetection
+from .TurtlebotCamera.FireDetection import deepfire_CV
 
 stringData = None
 gsock = None
@@ -85,8 +86,8 @@ class ServerSocket:
                         frame = image.gesture_recognition(frame)
                     elif model == "MaskDetection":
                         frame = maskDetection(frame)
-                    else:
-                        pass
+                    elif model == "FireDetection":
+                        frame = deepfire_CV(frame)
                 except Exception as e:
                     print("exception >>>", e)
                     pass
