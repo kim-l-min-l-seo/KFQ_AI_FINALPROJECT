@@ -43,7 +43,7 @@ logger.setLevel(level=logging.WARNING)
 # Local Camera
 cam = VideoCamera()
 
-ip = '192.168.0.247'
+ip = '192.168.0.150'
 
 # def ip():
 #     # Get ip from ipconfig *
@@ -60,26 +60,32 @@ ip = '192.168.0.247'
 #             continue
 #         else:
 #             ip_list.append(result.group())
-
-#     print(ip_list[0],ip_list[1])
-#     return ip_list[1]
+#     try :
+#         if ip_list[0] != None and ip_list[1] == None :
+#             print(ip_list[0])
+#             return ip_list[0]
+#         if ip_list[0] == None and ip_list[1] != None :
+#             print(ip_list[1])
+#             return ip_list[1]
+#     except :
+#         pass
 
 # Socket 통신 접속
 # socket = ServerSocket(ip(), 9090)
-socket = ServerSocket(ip, 9090)
+# socket = ServerSocket(ip, 9090)
 
 Exception_MESSAGE = ""
 
 class View:
     # url mapping
     def server(request, hw, dl):
-        global Exception_MESSAGE
+        global Exception_MESSAGE,ip
         logging.info("hw :", hw, "  dl:", dl)
         import requests
         import re
 
         # logging.info("내부 ip : ", ip())
-        logging.info("내부 ip : ", ip)
+        # logging.info("내부 ip : ", ip)
         req = requests.get("http://ipconfig.kr")
 
 
@@ -101,7 +107,7 @@ class View:
         elif hw == "template" and dl == "page":
             return render(request, './0_SERVER/4_template.html', context)
         elif hw == "template2" and dl == "page":
-            return render(request, './0_SERVER/5_template_2.html', context)
+            return render(request, './0_SERVER/final.html', context)
 
         # WebCamera
         elif hw == "WebCamera" and dl =="none":

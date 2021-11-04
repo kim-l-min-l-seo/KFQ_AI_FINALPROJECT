@@ -33,25 +33,34 @@ $(document).ready(function() {
 	var termTop = '\
 	<div id="terminal-window"> \
  	<div id="terminal-toolbar"> \
-		<div class="terminal-top"> \
-				<div class="terminal-menu"> \
-				</div> \
-			<div id="terminal-buttons"> \
-				<div class="terminal-button terminal-close"> \
-				<div class="terminal-close-icon">X</div> \
-				</div> \
+	<div class="terminal-top"> \
+	<div class="terminal-menu"> \
+	</div> \
+		  <div id="terminal-buttons"> \
+			<div class="terminal-button terminal-close"> \
+			<div class="terminal-close-icon">X</div> \
+	</div> \
 			</div> \
 			<div id="terminal-title"> \
-				user@localhost:~ \
+				IMU sensor data@server:~ \
 			</div> \
 		</div> \
 	</div> \
-	<div id="terminal-body" style="overflow:auto; height:150px;"><p> \
+	<div id="terminal-body" style="overflow:auto; height:250px;">\
 ';
 
 	// closes the html that has been inserted, ends the terminal display
 	var termBot = '\
-	</p> \
+<div id="imu_orientation_w"></div>\
+<div id="imu_orientation_x"></div>\
+<div id="imu_orientation_y"></div>\
+<div id="imu_orientation_z"></div>\
+<div id="imu_angular_velocity_x"></div>\
+<div id="imu_angular_velocity_y"></div>\
+<div id="imu_angular_velocity_z"></div>\
+<div id="imu_linear_acceleration_x"></div>\
+<div id="imu_linear_acceleration_y"></div>\
+<div id="imu_linear_acceleration_z"></div>\
 	</div> \
 </div> \
 ';
@@ -66,9 +75,9 @@ $(document).ready(function() {
       if (this.length != 0) {
         // is string a root command
         if (this.charAt(0) == "#" || this.charAt(0) == "$") {
-          newString += userReplace(this) + "<br>\n";
+          // newString += userReplace(this) + "<br>\n";
         } else {
-          newString += htmlEscape(this) + "<br>\n";
+          // newString += htmlEscape(this) + "<br>\n";
       }
     }
   });
