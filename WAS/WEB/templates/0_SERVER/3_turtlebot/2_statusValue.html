@@ -40,21 +40,14 @@
             </div>
         </div>
     </div>
+</div>
 
+<div class="row">
     <!-- 컨트롤러 -->
     <div class="col-xl-2 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card h-100">
-            <div class="stat-widget-one card-body">
-                <div class="stat-icon d-inline-block">
-                    <i class="ti-user text-primary border-primary"></i>
-                </div>
-                <div class="stat-content d-inline-block">
-                    <div id="w">w</div>
-                    <div id="a">a</div>
-                    <div id="s">s</div>
-                    <div id="d">d</div>
-                    <div id=" ">space</div>
-                </div>
+            <div class="card-body">
+                {% include "0_SERVER/3_turtlebot/keyboard.html" %}
             </div>
         </div>
     </div>
@@ -62,14 +55,20 @@
     <!-- 속도 관련 메세지 -->
     <div class="col-xl-2 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card h-100">
-            <div class="stat-widget-one card-body">
-                <div class="stat-icon d-inline-block">
-                    <div class="stat-text">전후속도</div>
-                    <div class="stat-text">좌우속도</div>
+            <div class="card">
+                <div class="card-title text-center">
+                    <br/>
+                    <div>계기판</div>
+                    <br/>
+                    <div id="vel_linear_state">전/후 정지</div>
+                    <div id="vel_angular_state">좌/우 정지</div>
                 </div>
-                <div class="stat-content d-inline-block">
-                    <div id="vel_linear_x"></div>
-                    <div id="vel_angular_z"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div id="vel_linear_x">전/후 속도</div>
+                    <div id="vel_angular_z">좌/우 속도</div>
                 </div>
             </div>
         </div>
@@ -78,10 +77,9 @@
     <!-- 자율주행 관련 메세지 -->
     <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card h-100">
-            <div class="stat-widget-one card-body">
-                <div class="stat-content d-inline-block">
-                    <div id="nav_status"></div>
-                </div>
+            <div class="card-title text-center">
+                <br/><br/><br/><br/><br/><br/><br/><br/>
+                <div id="nav_status">자율 주행 메세지</div>
             </div>
         </div>
     </div>
@@ -89,8 +87,12 @@
     <!-- 센서데이터 관련 메세지 -->
     <div class="col-xl-4 mb-3 col-lg-6 col-xxl-6 col-md-6 container-box">
         <div class="card h-100">
-            <div class="stat-widget-one card-body">
-                <div class="stat-content d-inline-block">
+                <div class="card-title text-center">
+                    <br/>
+                    <div>IMU 센서 데이터</div>
+                    <br/>
+                </div>
+                <div class="card-body">
                     <div id="imu_orientation_w"></div>
                     <div id="imu_orientation_x"></div>
                     <div id="imu_orientation_y"></div>

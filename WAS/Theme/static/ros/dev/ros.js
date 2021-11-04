@@ -72,20 +72,6 @@ function init() {
   });
     //Subscribing to a Topic
   //----------------------
-  
-  // clock
-  var clock_listener = new ROSLIB.Topic({
-    ros : ros,
-    name : '/clock',
-    messageType : 'rosgraph_msgs/Clock'
-  });
-  // Then we add a callback to be called every time a message is published on this topic.
-  clock_listener.subscribe(function(clock) {
-    // console.log(clock.clock);
-    // console.log(clock.clock.secs);
-    // console.log(clock.clock.nsecs);
-    // console.log(clock);
-  });
 
   // cmd_vel
   var cmd_vel_listener = new ROSLIB.Topic({
@@ -96,9 +82,30 @@ function init() {
   // Then we add a callback to be called every time a message is published on this topic.
   cmd_vel_listener.subscribe(function(cmd_vel) {
     var vel_x = document.getElementById('vel_linear_x');
-    vel_x.innerText = cmd_vel.linear.x;
+    vel_x.innerText = '전/후 속도 \u00A0'+cmd_vel.linear.x.toPrecision(10);
     var vel_z = document.getElementById('vel_angular_z');
-    vel_z.innerText = cmd_vel.angular.z;
+    vel_z.innerText = '좌/우 속도 \u00A0'+cmd_vel.angular.z.toPrecision(10);
+    var vel_x_state = document.getElementById('vel_linear_state');
+    var vel_z_state = document.getElementById('vel_angular_state');
+    if (cmd_vel.linear.x > 0) {
+      vel_x_state.innerText = '전진';
+    }
+    else if (cmd_vel.linear.x < 0) {
+      vel_x_state.innerText = '후진';
+    }
+    else {
+      vel_x_state.innerText = '\u00A0';
+    }
+
+    if (cmd_vel.angular.z > 0) {
+      vel_z_state.innerText = '좌회전';
+    }
+    else if (cmd_vel.angular.z < 0) {
+      vel_z_state.innerText = '우회전';
+    }
+    else {
+      vel_z_state.innerText = '\u00A0';
+    }
   });
 
   // imu
@@ -110,25 +117,25 @@ function init() {
   // // Then we add a callback to be called every time a message is published on this topic.
   imu_listener.subscribe(function(imu) {
     var imu_orientation_w = document.getElementById('imu_orientation_w');
-    imu_orientation_w.innerText = 'w: '+imu.orientation.w;
+    imu_orientation_w.innerText = '지자계 w : \u00A0'+imu.orientation.w;
     var imu_orientation_x = document.getElementById('imu_orientation_x');
-    imu_orientation_x.innerText = 'x: '+imu.orientation.x;
+    imu_orientation_x.innerText = '지자계 x : \u00A0'+imu.orientation.x;
     var imu_orientation_y = document.getElementById('imu_orientation_y');
-    imu_orientation_y.innerText = 'y: '+imu.orientation.y;
+    imu_orientation_y.innerText = '지자계 y : \u00A0'+imu.orientation.y;
     var imu_orientation_z = document.getElementById('imu_orientation_z');
-    imu_orientation_z.innerText = 'z: '+imu.orientation.z;
+    imu_orientation_z.innerText = '지자계 z : \u00A0'+imu.orientation.z;
     var imu_angular_velocity_x = document.getElementById('imu_angular_velocity_x');
-    imu_angular_velocity_x.innerText = 'x: '+imu.angular_velocity.x;
+    imu_angular_velocity_x.innerText = '각속도 x : \u00A0'+imu.angular_velocity.x;
     var imu_angular_velocity_y = document.getElementById('imu_angular_velocity_y');
-    imu_angular_velocity_y.innerText = 'y: '+imu.angular_velocity.y;
+    imu_angular_velocity_y.innerText = '각속도 y : \u00A0'+imu.angular_velocity.y;
     var imu_angular_velocity_z = document.getElementById('imu_angular_velocity_z');
-    imu_angular_velocity_z.innerText = 'z: '+imu.angular_velocity.z;
+    imu_angular_velocity_z.innerText = '각속도 z : \u00A0'+imu.angular_velocity.z;
     var imu_linear_acceleration_x = document.getElementById('imu_linear_acceleration_x');
-    imu_linear_acceleration_x.innerText = 'x: '+imu.linear_acceleration.x;
+    imu_linear_acceleration_x.innerText = '가속도 x : \u00A0'+imu.linear_acceleration.x;
     var imu_linear_acceleration_y = document.getElementById('imu_linear_acceleration_y');
-    imu_linear_acceleration_y.innerText = 'y: '+imu.linear_acceleration.y;
+    imu_linear_acceleration_y.innerText = '가속도 y : \u00A0'+imu.linear_acceleration.y;
     var imu_linear_acceleration_z = document.getElementById('imu_linear_acceleration_z');
-    imu_linear_acceleration_z.innerText = 'z: '+imu.linear_acceleration.z;
+    imu_linear_acceleration_z.innerText = '가속도 z : \u00A0'+imu.linear_acceleration.z;
   });
 
   // battery state
@@ -143,7 +150,7 @@ function init() {
     battery_percentage.innerText = battery.percentage;
   });
 
-  // cmd_vel
+  // nav status
   var nav_status = new ROSLIB.Topic({
     ros : ros,
     name : '/move_base/status',
@@ -152,15 +159,34 @@ function init() {
   // Then we add a callback to be called every time a message is published on this topic.
   nav_status.subscribe(function(status) {
     var length = status.status_list.length;
-    if (length == 1){
-      var nav_status = document.getElementById('nav_status');
-      nav_status.innerText = status.status_list[0].text;
-      // console.log(status.status_list[0]);
+    
+    if (length == 1) {
+      // var nav_status = document.getElementById('nav_status');
+      if (status.status_list[0].text == "Goal reached.") {
+        var nav_status = document.getElementById('nav_status');
+        nav_status.innerText =  '목표 지점 도착 완료';
+      }
+      else if (status.status_list[0].text == "This goal has been accepted by the simple action server") {
+        var nav_status = document.getElementById('nav_status');
+        nav_status.innerText = '목표 지점 전달 중';
+      }
+      else {
+        var nav_status = document.getElementById('nav_status');
+        nav_status.innerText = '명령 전달 진행 중';
+      }
     }
     else {
-      var nav_status = document.getElementById('nav_status');
-      nav_status.innerText = status.status_list[1].text;
-      // console.log(status.status_list[1]);
+      if (status.status_list[1].text == "Goal reached.") {
+        var nav_status = document.getElementById('nav_status');
+        nav_status.innerText =  '목표 지점 도착 완료';
+      }
+      else if (status.status_list[1].text == "This goal has been accepted by the simple action server") {
+        var nav_status = document.getElementById('nav_status');
+        nav_status.innerText = '목표 지점 전달 중';
+      }
+      else {
+        nav_status.innerText = '명령 전달 진행 중';
+      }
     }
   });
 }

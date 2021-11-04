@@ -34,7 +34,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
     <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
     <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
-    <script type="text/javascript" src="{% static 'ros/dev/keyboardteleop.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'ros/dev/keyboardteleop.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'ros/dev/keyboardteleop_2.js' %}"></script>
 
     <script src="{% static 'ros/dev/ros2d.js' %}"></script>
     <script src="{% static 'ros/dev/nav.js' %}"></script>
@@ -42,4 +43,8 @@
 
     <script src="{% static 'ros/dev/ros.js' %}"></script>
     <script src="{% static 'ros/dev/keyboard_event.js' %}"></script>
+
+    <!-- keyboard css -->
+    <link href="{% static 'ros/raw/keyboard.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 </head>
