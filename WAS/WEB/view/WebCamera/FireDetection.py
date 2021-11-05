@@ -18,9 +18,6 @@ def deepfire_CV(frame):
             # roi_gray = gray[y:y + h, x:x + w]
             # roi_color = frame[y:y + h, x:x + w]
             print("불 감지")
-            try:
-                messagebox.showwarning("Warning!!","Fire Detection!!")
-            except:
-                pass
+            messagebox.showwarning("<경고>","화재가 발생했습니다.")
         return frame
     

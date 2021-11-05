@@ -1,11 +1,12 @@
 import tensorflow as tf
-tf.debugging.set_log_device_placement(False)
+tf.debugging.set_log_device_placement(True)
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.models import load_model
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import os
+from tkinter import messagebox
 
 def maskDetection(image):
     model = load_model(os.getcwd()+"\WEB\\" +"view\WebCamera\models\mask_detector.model")
@@ -55,6 +56,7 @@ def maskDetection(image):
             else:
                 color = (0, 0, 255)
                 label = 'No Mask %d%%' % (nomask * 100)
+                messagebox.showwarning("<경고>","마스크 미착용자가 발견되었습니다.")
 
             cv2.rectangle(image, pt1=(x1, y1), 
                         pt2=(x2, y2),thickness=2, 
@@ -65,6 +67,9 @@ def maskDetection(image):
                         fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                         fontScale=0.8, color=color, 
                         thickness=2, lineType=cv2.LINE_AA)
+
+            if label == 'No Mask':
+                print("No MASK")
 
         return image
 

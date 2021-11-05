@@ -17,11 +17,6 @@ def deepfire_CV(frame):
         for (x, y, w, h) in fire:
             cv2.rectangle(frame, (x - 20, y - 20),
                           (x + w + 20, y + h + 20), (255, 0, 0), 2)
-            # roi_gray = gray[y:y + h, x:x + w]
-            # roi_color = frame[y:y + h, x:x + w]
             print("불 감지")
-            try:
-                messagebox.showwarning("Warning!!", "Fire Detection!!")
-            except:
-                pass
+            messagebox.showwarning("Warning!!", "Fire Detection!!")
         return frame

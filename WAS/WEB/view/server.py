@@ -43,7 +43,7 @@ logger.setLevel(level=logging.WARNING)
 # Local Camera
 cam = VideoCamera()
 
-ip = '192.168.219.100'
+ip = '192.168.0.150'
 
 # def ip():
 #     # Get ip from ipconfig *
