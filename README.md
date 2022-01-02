@@ -1,6 +1,4 @@
-# 한국품질재단 
-
-AUTONOMOUS SURVEILLANCE ROBOT
+# 한국품질재단 AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
 
 자율 순찰 로봇
 
@@ -12,6 +10,11 @@ AUTONOMOUS SURVEILLANCE ROBOT
 
 멘토 : 이성민(LG전자), 문새마로(TmaxSoft)
 
+# YOUTUBE
+
+  최종프로젝트 시연 영상
+https://www.youtube.com/watch?v=F3jz9fvuC3E
+  
 
 # 목차
   
@@ -22,20 +25,30 @@ AUTONOMOUS SURVEILLANCE ROBOT
   5.    DEMONSTRATE
 
 
-# 간트차트
-![image](https://user-images.githubusercontent.com/46194003/147873674-834b8d52-c581-49b3-ac2b-541060cbbfe8.png)
+![한국품질재단_최종프로젝트_4조_ASR_1](https://user-images.githubusercontent.com/46194003/147873923-d9dc00a5-df3a-4db1-8a0a-467c68b22b71.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_2](https://user-images.githubusercontent.com/46194003/147873925-b24fc242-889a-4d62-93c7-d7b9fd89f0c0.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_3](https://user-images.githubusercontent.com/46194003/147873926-2a587c62-4e4a-46db-b5c5-91a684ba5422.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_4](https://user-images.githubusercontent.com/46194003/147873930-7f6d0f6c-3357-450f-bcb8-b118497da3dd.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_5](https://user-images.githubusercontent.com/46194003/147873932-28ccc3fc-494c-49f7-b0fa-f90555523290.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_6](https://user-images.githubusercontent.com/46194003/147873933-212ae773-43ac-4940-816a-af26ee449e7b.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_7](https://user-images.githubusercontent.com/46194003/147873934-844628b4-61d0-4435-9810-75d292aea991.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_8](https://user-images.githubusercontent.com/46194003/147873935-6bd9e302-b53a-4e15-a85b-98ab0f43ccdf.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_9](https://user-images.githubusercontent.com/46194003/147873936-454673d0-86f7-43c8-a297-21fa32ef6994.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_10](https://user-images.githubusercontent.com/46194003/147873937-5b239a10-cca8-44a5-81bd-f55346860440.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_11](https://user-images.githubusercontent.com/46194003/147873938-5486d606-022f-498e-95c6-01ad9f1de0be.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_12](https://user-images.githubusercontent.com/46194003/147873939-89b63398-d70a-49b6-b54b-32eaada35bc3.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_13](https://user-images.githubusercontent.com/46194003/147873940-cd063e6c-9ee6-47af-b3f1-69ef8950917e.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_14](https://user-images.githubusercontent.com/46194003/147873941-64492195-5a09-4071-bfc5-ce6314a8b147.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_15](https://user-images.githubusercontent.com/46194003/147873942-c54551fc-ba4b-4a80-a5ab-485982d4037a.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_16](https://user-images.githubusercontent.com/46194003/147873943-5f6a74ee-e451-4e4d-8c14-320fd7ac5aaf.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_17](https://user-images.githubusercontent.com/46194003/147873944-f7002389-1481-494c-90e7-ed9f3fb3e497.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_18](https://user-images.githubusercontent.com/46194003/147873945-ae2d1072-95e1-4660-bea0-1c4ef967605b.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_19](https://user-images.githubusercontent.com/46194003/147873946-f8474a3f-0844-4859-a2aa-a4b568edf88e.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_20](https://user-images.githubusercontent.com/46194003/147873947-0341793f-5d59-43c6-8146-a38dca141286.jpg)
+![한국품질재단_최종프로젝트_4조_ASR_21](https://user-images.githubusercontent.com/46194003/147873948-7e5a2b19-3f00-42bd-8a32-60ec193495f7.jpg)
 
-![image](https://user-images.githubusercontent.com/46194003/147873703-fc471c40-43f1-4bbb-aa4b-6ec397dce713.png)
 
-![image](https://user-images.githubusercontent.com/46194003/147873708-8ae0237b-2f97-4ab8-9029-f7caff9bb4b2.png)
-
-![image](https://user-images.githubusercontent.com/46194003/147873711-007154fe-a905-413d-97bd-8d27229d701b.png)
-
-![image](https://user-images.githubusercontent.com/46194003/147873730-efcaa56b-89a1-4e13-a784-7b960f9b0a61.png)
-
-
-
-KFQ_FinalProject
+# GIT
 
 git init : 현재 파일을 깃허브와 연동
 
