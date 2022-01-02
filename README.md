@@ -1,4 +1,10 @@
-# KFQ_FinalProject
+# 한국품질재단 
+
+반장 : 김민서
+
+팀장 : 김민서
+
+팀원 : 한정탁, 이은창, 
 
 KFQ_FinalProject
 git init : 현재 파일을 깃허브와 연동
