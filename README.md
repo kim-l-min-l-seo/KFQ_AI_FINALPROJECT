@@ -27,7 +27,7 @@ AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
     
     2). FIRE DETECT
     
-    3). GESTURE RECOGNITION
+    3). GESTURE RECOGNITION - 모션 인식 컨트롤러 모듈
     
     4). SSDNET
     
