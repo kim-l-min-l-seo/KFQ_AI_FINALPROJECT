@@ -17,9 +17,13 @@ AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
   1. 자율 주행
   2. TCP 소켓통신
   3. YOLO V5
+  
     1). MASK DETECT
+    
     2). FIRE DETECT
+    
     3). GESTURE RECOGNITION
+    
     4). SSDNET
     
 
@@ -27,7 +31,16 @@ AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
 # YOUTUBE
 
   최종프로젝트 시연 영상
-https://www.youtube.com/watch?v=F3jz9fvuC3E
+  
+  영상 기획&편집 : 이은창
+  
+  카메라 보조 : 김민서, 한정탁
+  
+  로봇 세팅 및 조종 : 한정탁
+  
+  보조출연 : 김민서
+  
+  https://www.youtube.com/watch?v=F3jz9fvuC3E
   
 
 # 목차
