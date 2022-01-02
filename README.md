@@ -16,7 +16,10 @@ AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
   
   1. 자율 주행
   2. TCP 소켓통신
-  3. YOLO V5
+
+    - 소켓통신을 이용한 이미지 송수신 API 모듈
+
+  4. YOLO V5
   
     1). MASK DETECT
     
