@@ -12,6 +12,8 @@ AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
 
 멘토 : 이성민(LG전자), 문새마로(TmaxSoft)
 
+한줄평 : 내 인생에서 차라리 일하지..라는 생각이 들정도로 어렵고 시간도 부족하고 빡센 난이도 역대급이였던 프로젝트
+
 # 사용기술
   
   1. 자율 주행
@@ -54,6 +56,7 @@ AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
   4.    TECHNOLOGIES
   5.    DEMONSTRATE
 
+# PPT
 
 ![한국품질재단_최종프로젝트_4조_ASR_1](https://user-images.githubusercontent.com/46194003/147873923-d9dc00a5-df3a-4db1-8a0a-467c68b22b71.jpg)
 ![한국품질재단_최종프로젝트_4조_ASR_2](https://user-images.githubusercontent.com/46194003/147873925-b24fc242-889a-4d62-93c7-d7b9fd89f0c0.jpg)
