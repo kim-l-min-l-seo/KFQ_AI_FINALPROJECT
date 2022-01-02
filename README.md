@@ -1,4 +1,4 @@
-# 한국품질재단 
+# 한국품질재단 AI 개발자 양성과정
 
 AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
 
