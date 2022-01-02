@@ -22,9 +22,16 @@ AUTONOMOUS SURVEILLANCE ROBOT
   5.    DEMONSTRATE
 
 
-
+# 간트차트
 ![image](https://user-images.githubusercontent.com/46194003/147873674-834b8d52-c581-49b3-ac2b-541060cbbfe8.png)
 
+![image](https://user-images.githubusercontent.com/46194003/147873703-fc471c40-43f1-4bbb-aa4b-6ec397dce713.png)
+
+![image](https://user-images.githubusercontent.com/46194003/147873708-8ae0237b-2f97-4ab8-9029-f7caff9bb4b2.png)
+
+![image](https://user-images.githubusercontent.com/46194003/147873711-007154fe-a905-413d-97bd-8d27229d701b.png)
+
+![image](https://user-images.githubusercontent.com/46194003/147873730-efcaa56b-89a1-4e13-a784-7b960f9b0a61.png)
 
 
 
