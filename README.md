@@ -8,7 +8,7 @@ AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
 
 팀장 : 김민서
 
-팀원 : 한정탁, 이은창, 김경진
+팀원 : 한정탁(https://19tak.github.io/posts/02-prj3/), 이은창, 김경진
 
 멘토 : 이성민(LG전자), 문새마로(TmaxSoft)
 
