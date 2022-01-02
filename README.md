@@ -12,6 +12,18 @@ AI PROJECT : AUTONOMOUS SURVEILLANCE ROBOT
 
 멘토 : 이성민(LG전자), 문새마로(TmaxSoft)
 
+# 사용기술
+  
+  1. 자율 주행
+  2. TCP 소켓통신
+  3. YOLO V5
+    1). MASK DETECT
+    2). FIRE DETECT
+    3). GESTURE RECOGNITION
+    4). SSDNET
+    
+
+
 # YOUTUBE
 
   최종프로젝트 시연 영상
